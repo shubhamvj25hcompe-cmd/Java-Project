@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Attendance | Project Java</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<div class="background">
+    <div class="wave wave1"></div>
+    <div class="wave wave2"></div>
+    <div class="wave wave3"></div>
+
+    <div class="circle circle1"></div>
+    <div class="circle circle2"></div>
+    <div class="circle circle3"></div>
+</div>
+
+<main class="dashboard-container">
+
+    <!-- HEADER -->
+    <header class="dashboard-header">
+
+        <div>
+            <div class="dashboard-logo">SA</div>
+
+            <div class="dashboard-title">
+                <h1>Examination Attendance</h1>
+                <p>Project Java • Smart Examination System</p>
+            </div>
+        </div>
+
+        <button type="button"
+                class="logout-btn"
+                id="logoutBtn">
+            Logout
+        </button>
+
+    </header>
+
+
+    <!-- BACK BUTTON -->
+    <div style="margin-bottom: 20px;">
+
+        <button
+            type="button"
+            class="dashboard-action"
+            onclick="window.location.href='student-dashboard.html'">
+
+            ← Back to Dashboard
+
+        </button>
+
+    </div>
+
+
+    <!-- ATTENDANCE HEADER -->
+    <section class="welcome-card">
+
+        <div>
+
+            <p class="small-title">
+                STUDENT ATTENDANCE
+            </p>
+
+            <h2 id="attendanceWelcome">
+                Examination Attendance
+            </h2>
+
+            <p>
+                Your attendance is calculated from the examinations
+                prepared by the administrator and the examinations
+                you have submitted.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ATTENDANCE STATISTICS -->
+    <section class="attendance-grid">
+
+        <div class="attendance-card">
+
+            <div class="attendance-icon">
+                📚
+            </div>
+
+            <h3>Total Exams</h3>
+
+            <p id="totalExams">
+                0
+            </p>
+
+            <span>
+                Exams prepared by Admin
+            </span>
+
+        </div>
+
+
+        <div class="attendance-card">
+
+            <div class="attendance-icon">
+                📝
+            </div>
+
+            <h3>Exams Given</h3>
+
+            <p id="examsGiven">
+                0
+            </p>
+
+            <span>
+                Exams submitted by you
+            </span>
+
+        </div>
+
+
+        <div class="attendance-card">
+
+            <div class="attendance-icon">
+                ⏳
+            </div>
+
+            <h3>Exams Not Given</h3>
+
+            <p id="examsNotGiven">
+                0
+            </p>
+
+            <span>
+                Remaining examinations
+            </span>
+
+        </div>
+
+
+        <div class="attendance-card attendance-percentage">
+
+            <div class="attendance-icon">
+                📊
+            </div>
+
+            <h3>Attendance</h3>
+
+            <p id="attendancePercentage">
+                0%
+            </p>
+
+            <span>
+                Overall examination attendance
+            </span>
+
+        </div>
+
+    </section>
+
+
+    <!-- ATTENDANCE SUMMARY -->
+    <section class="attendance-summary">
+
+        <h2>Attendance Summary</h2>
+
+        <div class="attendance-progress">
+
+            <div
+                id="attendanceProgress"
+                class="attendance-progress-bar">
+            </div>
+
+        </div>
+
+        <p id="attendanceMessage">
+            Loading attendance...
+        </p>
+
+    </section>
+
+
+    <!-- EXAM DETAILS -->
+    <section class="attendance-details">
+
+        <h2>Examination Details</h2>
+
+        <div id="attendanceExamList">
+
+            <p>
+                Loading examination details...
+            </p>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<script src="js/student-attendance.js"></script>
+
+</body>
+</html>

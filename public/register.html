@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Register | Smart Attendance</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+</head>
+
+<body>
+
+    <!-- Animated Background -->
+
+    <div class="background">
+
+        <div class="wave wave1"></div>
+        <div class="wave wave2"></div>
+        <div class="wave wave3"></div>
+
+        <div class="circle circle1"></div>
+        <div class="circle circle2"></div>
+        <div class="circle circle3"></div>
+
+    </div>
+
+
+    <!-- Registration Container -->
+
+    <main class="register-container">
+
+        <section class="register-card">
+
+            <!-- HEADER -->
+
+            <div class="register-header">
+
+                <div class="logo">
+                    SA
+                </div>
+
+                <h1>
+                    Create Account
+                </h1>
+
+                <p>
+                    Register as a Computer Engineering student
+                </p>
+
+            </div>
+
+
+            <!-- REGISTRATION FORM -->
+
+            <form id="registerForm">
+
+
+                <!-- FULL NAME -->
+
+                <div class="input-group">
+
+                    <label for="fullName">
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="fullName"
+                        placeholder="Enter your full name"
+                        required
+                        maxlength="100"
+                    >
+
+                </div>
+
+
+                <!-- EMAIL + PHONE -->
+
+                <div class="form-row">
+
+                    <div class="input-group">
+
+                        <label for="email">
+                            Email Address
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="you@example.com"
+                            required
+                            maxlength="150"
+                        >
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label for="phone">
+                            Phone Number
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="phone"
+                            placeholder="10-digit number"
+                            required
+                            maxlength="10"
+                            pattern="[0-9]{10}"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- DATE OF BIRTH -->
+
+                <div class="input-group">
+
+                    <label for="dob">
+                        Date of Birth
+                    </label>
+
+                    <input
+                        type="date"
+                        id="dob"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- ROLL NUMBER + DIVISION -->
+
+                <div class="form-row">
+
+                    <div class="input-group">
+
+                        <label for="rollNumber">
+                            Roll Number
+                        </label>
+
+                        <input
+                            type="text"
+                            id="rollNumber"
+                            placeholder="Enter roll number"
+                            required
+                            maxlength="50"
+                        >
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label for="division">
+                            Division
+                        </label>
+
+                        <input
+                            type="text"
+                            id="division"
+                            placeholder="e.g. S2"
+                            required
+                            maxlength="20"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- PASSWORD -->
+
+                <div class="input-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <div class="password-wrapper">
+
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="Minimum 6 characters"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="show-password"
+                            onclick="toggleRegisterPassword('password')"
+                        >
+                            👁
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CONFIRM PASSWORD -->
+
+                <div class="input-group">
+
+                    <label for="confirmPassword">
+                        Confirm Password
+                    </label>
+
+                    <div class="password-wrapper">
+
+                        <input
+                            type="password"
+                            id="confirmPassword"
+                            placeholder="Re-enter your password"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="show-password"
+                            onclick="toggleRegisterPassword('confirmPassword')"
+                        >
+                            👁
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- TERMS -->
+
+                <label class="terms">
+
+                    <input
+                        type="checkbox"
+                        id="terms"
+                        required
+                    >
+
+                    <span>
+                        I agree to the system terms and attendance policies.
+                    </span>
+
+                </label>
+
+
+                <!-- MESSAGE -->
+
+                <div
+                    id="registerMessage"
+                    class="message"
+                ></div>
+
+
+                <!-- BUTTON -->
+
+                <button
+                    type="submit"
+                    class="login-btn"
+                    id="registerBtn"
+                >
+
+                    <span>
+                        Create Account
+                    </span>
+
+                    <span class="arrow">
+                        →
+                    </span>
+
+                </button>
+
+            </form>
+
+
+            <!-- LOGIN LINK -->
+
+            <div class="register-link">
+
+                Already have an account?
+
+                <a href="index.html">
+                    Login
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="js/register.js"></script>
+
+</body>
+
+</html>

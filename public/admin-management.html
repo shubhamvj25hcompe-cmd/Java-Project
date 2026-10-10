@@ -1,0 +1,1758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Management - Project Java</title>
+
+  <style>
+
+/* =========================================================
+   PROJECT JAVA
+   ADMIN MANAGEMENT
+   DARK GLASS + CYAN THEME
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+
+    font-family:
+        "Segoe UI",
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    color: #eafaff;
+
+    background:
+        radial-gradient(
+            circle at 8% 10%,
+            rgba(0, 212, 255, 0.14),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 92% 88%,
+            rgba(0, 119, 182, 0.16),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #040a12 0%,
+            #071421 48%,
+            #0a2034 100%
+        );
+
+    background-size: 180% 180%;
+
+    animation:
+        backgroundMove 18s ease infinite;
+
+    overflow-x: hidden;
+}
+
+/* =========================================================
+   ANIMATED BACKGROUND GLOW
+   ========================================================= */
+
+body::before,
+body::after {
+    content: "";
+
+    position: fixed;
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    z-index: -1;
+
+    filter: blur(35px);
+}
+
+body::before {
+    width: 360px;
+    height: 360px;
+
+    top: -170px;
+    left: -130px;
+
+    background:
+        rgba(0, 212, 255, 0.10);
+
+    animation:
+        glowOne 9s ease-in-out infinite;
+}
+
+body::after {
+    width: 400px;
+    height: 400px;
+
+    right: -170px;
+    bottom: -180px;
+
+    background:
+        rgba(0, 119, 182, 0.12);
+
+    animation:
+        glowTwo 11s ease-in-out infinite;
+}
+
+@keyframes backgroundMove {
+
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes glowOne {
+
+    0%,
+    100% {
+        transform:
+            translate(0, 0)
+            scale(1);
+    }
+
+    50% {
+        transform:
+            translate(35px, 25px)
+            scale(1.08);
+    }
+}
+
+@keyframes glowTwo {
+
+    0%,
+    100% {
+        transform:
+            translate(0, 0)
+            scale(1);
+    }
+
+    50% {
+        transform:
+            translate(-35px, -25px)
+            scale(1.08);
+    }
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.header {
+    position: relative;
+
+    width: 92%;
+    max-width: 1100px;
+
+    margin: 30px auto 0;
+
+    padding: 25px 28px;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.085),
+            rgba(255, 255, 255, 0.035)
+        );
+
+    border:
+        1px solid rgba(255, 255, 255, 0.10);
+
+    box-shadow:
+        0 15px 40px
+        rgba(0, 0, 0, 0.22);
+
+    backdrop-filter:
+        blur(18px);
+
+    -webkit-backdrop-filter:
+        blur(18px);
+
+    overflow: hidden;
+
+    animation:
+        slideDown 0.7s ease both;
+}
+
+.header::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 6%;
+
+    width: 88%;
+    height: 2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #00d4ff,
+            #0077b6,
+            transparent
+        );
+
+    opacity: 0.75;
+}
+
+.header h1 {
+    color: #effcff;
+
+    font-size: 26px;
+
+    font-weight: 700;
+
+    margin-bottom: 7px;
+}
+
+.header p {
+    color: #7e9aa8;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+@keyframes slideDown {
+
+    from {
+        opacity: 0;
+        transform:
+            translateY(-18px);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            translateY(0);
+    }
+}
+
+/* =========================================================
+   MAIN CONTAINER
+   ========================================================= */
+
+.container {
+    width: 92%;
+    max-width: 1100px;
+
+    margin: 25px auto 60px;
+
+    animation:
+        pageAppear 0.8s ease both;
+}
+
+@keyframes pageAppear {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+/* =========================================================
+   BACK TO DASHBOARD
+   ========================================================= */
+
+.back-btn {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    margin-bottom: 20px;
+
+    padding: 10px 17px;
+
+    border:
+        1px solid rgba(0, 212, 255, 0.15);
+
+    border-radius: 9px;
+
+    background:
+        rgba(0, 180, 216, 0.08);
+
+    color:
+        #a9eafa;
+
+    font-family: inherit;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.22s ease,
+        background 0.22s ease,
+        color 0.22s ease,
+        box-shadow 0.22s ease;
+}
+
+.back-btn:hover {
+    background:
+        rgba(0, 180, 216, 0.17);
+
+    color:
+        #ffffff;
+
+    transform:
+        translateX(-3px);
+
+    box-shadow:
+        0 8px 22px
+        rgba(0, 180, 216, 0.10);
+}
+
+/* =========================================================
+   MAIN CARDS
+   ========================================================= */
+
+.card {
+    position: relative;
+
+    padding: 26px;
+
+    margin-bottom: 22px;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.075),
+            rgba(255, 255, 255, 0.028)
+        );
+
+    border:
+        1px solid rgba(255, 255, 255, 0.09);
+
+    box-shadow:
+        0 15px 40px
+        rgba(0, 0, 0, 0.20);
+
+    backdrop-filter:
+        blur(18px);
+
+    -webkit-backdrop-filter:
+        blur(18px);
+
+    overflow: hidden;
+}
+
+.card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 7%;
+
+    width: 86%;
+    height: 2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #00d4ff,
+            #0077b6,
+            transparent
+        );
+
+    opacity: 0.55;
+}
+
+.card h2 {
+    color:
+        #effaff;
+
+    font-size:
+        20px;
+
+    font-weight:
+        650;
+
+    margin-bottom:
+        9px;
+}
+
+.info {
+    color:
+        #7895a5;
+
+    font-size:
+        13px;
+
+    line-height:
+        1.65;
+
+    margin-bottom:
+        20px;
+}
+
+.info strong {
+    color:
+        #5de2ff;
+}
+
+/* =========================================================
+   ADMIN KEY BOX
+   ========================================================= */
+
+.key-box {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        auto
+        auto;
+
+    gap: 10px;
+
+    align-items: center;
+
+    padding: 15px;
+
+    border-radius: 13px;
+
+    background:
+        rgba(0, 0, 0, 0.20);
+
+    border:
+        1px solid rgba(0, 212, 255, 0.12);
+
+    box-shadow:
+        inset 0 0 25px
+        rgba(0, 212, 255, 0.025);
+
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.key-box:focus-within {
+    border-color:
+        rgba(0, 212, 255, 0.28);
+
+    box-shadow:
+        0 0 25px
+        rgba(0, 212, 255, 0.06);
+}
+
+/* =========================================================
+   ADMIN KEY INPUT
+   ========================================================= */
+
+#adminKey {
+    width: 100%;
+
+    min-width: 0;
+
+    height: 45px;
+
+    padding:
+        0 14px;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.09);
+
+    border-radius: 8px;
+
+    outline: none;
+
+    background:
+        rgba(255, 255, 255, 0.045);
+
+    color:
+        #5de2ff;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size:
+        15px;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        1.2px;
+
+    transition:
+        border-color 0.22s ease,
+        background 0.22s ease,
+        box-shadow 0.22s ease;
+}
+
+#adminKey::placeholder {
+    color:
+        #607987;
+
+    font-family:
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    font-size:
+        12px;
+
+    letter-spacing:
+        0;
+}
+
+#adminKey:focus {
+    border-color:
+        rgba(0, 212, 255, 0.30);
+
+    background:
+        rgba(0, 180, 216, 0.05);
+
+    box-shadow:
+        0 0 15px
+        rgba(0, 212, 255, 0.06);
+}
+
+/* =========================================================
+   GENERATE BUTTON
+   ========================================================= */
+
+.generate-btn {
+    height: 45px;
+
+    padding:
+        0 17px;
+
+    border:
+        1px solid rgba(0, 212, 255, 0.18);
+
+    border-radius: 8px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0, 180, 216, 0.25),
+            rgba(0, 119, 182, 0.18)
+        );
+
+    color:
+        #eaffff;
+
+    font-family:
+        inherit;
+
+    font-size:
+        12px;
+
+    font-weight:
+        650;
+
+    white-space:
+        nowrap;
+
+    cursor:
+        pointer;
+
+    transition:
+        transform 0.22s ease,
+        background 0.22s ease,
+        border-color 0.22s ease,
+        box-shadow 0.22s ease;
+}
+
+.generate-btn:hover {
+    transform:
+        translateY(-2px);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0, 212, 255, 0.30),
+            rgba(0, 119, 182, 0.23)
+        );
+
+    border-color:
+        rgba(0, 212, 255, 0.38);
+
+    box-shadow:
+        0 9px 25px
+        rgba(0, 180, 216, 0.13);
+}
+
+.generate-btn:active {
+    transform:
+        translateY(0)
+        scale(0.98);
+}
+
+/* =========================================================
+   COPY BUTTON
+   ========================================================= */
+
+.copy-btn {
+    height: 45px;
+
+    padding:
+        0 18px;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.10);
+
+    border-radius: 8px;
+
+    background:
+        rgba(255, 255, 255, 0.055);
+
+    color:
+        #b9d8e2;
+
+    font-family:
+        inherit;
+
+    font-size:
+        12px;
+
+    font-weight:
+        650;
+
+    cursor:
+        pointer;
+
+    transition:
+        transform 0.22s ease,
+        background 0.22s ease,
+        border-color 0.22s ease,
+        color 0.22s ease;
+}
+
+.copy-btn:hover {
+    transform:
+        translateY(-2px);
+
+    background:
+        rgba(0, 180, 216, 0.11);
+
+    border-color:
+        rgba(0, 212, 255, 0.24);
+
+    color:
+        #ffffff;
+}
+
+.copy-btn:active {
+    transform:
+        translateY(0)
+        scale(0.98);
+}
+
+/* =========================================================
+   KEY MESSAGE
+   ========================================================= */
+
+#keyMessage {
+    min-height:
+        20px;
+
+    margin-top:
+        13px;
+
+    color:
+        #7895a5;
+
+    font-size:
+        12px;
+
+    line-height:
+        1.5;
+
+    transition:
+        opacity 0.25s ease;
+}
+
+/* =========================================================
+   SECONDARY ADMIN TABLE
+   ========================================================= */
+
+.admin-table {
+    width:
+        100%;
+
+    margin-top:
+        18px;
+
+    border-collapse:
+        separate;
+
+    border-spacing:
+        0;
+
+    overflow:
+        hidden;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.08);
+
+    border-radius:
+        13px;
+
+    background:
+        rgba(255, 255, 255, 0.02);
+}
+
+.admin-table th {
+    padding:
+        14px;
+
+    text-align:
+        left;
+
+    color:
+        #b9edf9;
+
+    background:
+        linear-gradient(
+            135deg,
+            #071725,
+            #0b263c
+        );
+
+    border-bottom:
+        1px solid rgba(0, 212, 255, 0.12);
+
+    font-size:
+        12px;
+
+    font-weight:
+        650;
+}
+
+.admin-table td {
+    padding:
+        14px;
+
+    color:
+        #b5cbd5;
+
+    background:
+        rgba(255, 255, 255, 0.015);
+
+    border-bottom:
+        1px solid rgba(255, 255, 255, 0.055);
+
+    font-size:
+        13px;
+}
+
+.admin-table tbody tr {
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.admin-table tbody tr:hover {
+    background:
+        rgba(0, 180, 216, 0.055);
+}
+
+.admin-table tbody tr:last-child td {
+    border-bottom:
+        none;
+}
+
+/* =========================================================
+   ACTIVE STATUS
+   ========================================================= */
+
+.status-active {
+    display:
+        inline-block;
+
+    padding:
+        5px 10px;
+
+    border-radius:
+        6px;
+
+    background:
+        rgba(34, 197, 94, 0.09);
+
+    border:
+        1px solid rgba(34, 197, 94, 0.14);
+
+    color:
+        #73e39a;
+
+    font-size:
+        11px;
+
+    font-weight:
+        700;
+}
+
+/* =========================================================
+   REVOKED STATUS
+   ========================================================= */
+
+.status-revoked {
+    display:
+        inline-block;
+
+    padding:
+        5px 10px;
+
+    border-radius:
+        6px;
+
+    background:
+        rgba(239, 68, 68, 0.08);
+
+    border:
+        1px solid rgba(239, 68, 68, 0.14);
+
+    color:
+        #f39a9a;
+
+    font-size:
+        11px;
+
+    font-weight:
+        700;
+}
+
+/* =========================================================
+   REVOKE BUTTON
+   ========================================================= */
+
+.revoke-btn {
+    padding:
+        7px 12px;
+
+    border:
+        1px solid rgba(239, 68, 68, 0.18);
+
+    border-radius:
+        7px;
+
+    background:
+        rgba(239, 68, 68, 0.08);
+
+    color:
+        #f39a9a;
+
+    font-family:
+        inherit;
+
+    font-size:
+        11px;
+
+    font-weight:
+        650;
+
+    cursor:
+        pointer;
+
+    transition:
+        transform 0.20s ease,
+        background 0.20s ease,
+        border-color 0.20s ease,
+        color 0.20s ease;
+}
+
+.revoke-btn:hover {
+    transform:
+        translateY(-1px);
+
+    background:
+        rgba(239, 68, 68, 0.16);
+
+    border-color:
+        rgba(239, 68, 68, 0.35);
+
+    color:
+        #ffb3b3;
+}
+
+.revoke-btn:active {
+    transform:
+        translateY(0)
+        scale(0.97);
+}
+
+/* =========================================================
+   TABLE EMPTY / LOADING ROW
+   ========================================================= */
+
+.admin-table td[colspan] {
+    padding:
+        28px 15px;
+
+    text-align:
+        center;
+
+    color:
+        #718b99;
+
+    font-size:
+        13px;
+}
+
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
+
+::-webkit-scrollbar {
+    width:
+        8px;
+
+    height:
+        8px;
+}
+
+::-webkit-scrollbar-track {
+    background:
+        #06101c;
+}
+
+::-webkit-scrollbar-thumb {
+    background:
+        linear-gradient(
+            180deg,
+            #008db8,
+            #005779
+        );
+
+    border-radius:
+        10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background:
+        #00a9d4;
+}
+
+/* =========================================================
+   RESPONSIVE — 850px
+   ========================================================= */
+
+@media (max-width: 850px) {
+
+    .header,
+    .container {
+        width:
+            94%;
+    }
+
+    .key-box {
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+    #adminKey {
+        grid-column:
+            1 / -1;
+    }
+
+}
+
+/* =========================================================
+   RESPONSIVE — 650px
+   ========================================================= */
+
+@media (max-width: 650px) {
+
+    .header {
+        margin-top:
+            18px;
+
+        padding:
+            21px;
+    }
+
+    .header h1 {
+        font-size:
+            21px;
+    }
+
+    .container {
+        margin-top:
+            20px;
+    }
+
+    .card {
+        padding:
+            20px;
+
+        border-radius:
+            15px;
+    }
+
+    .key-box {
+        grid-template-columns:
+            1fr;
+    }
+
+    #adminKey,
+    .generate-btn,
+    .copy-btn {
+        width:
+            100%;
+
+        grid-column:
+            auto;
+    }
+
+    .generate-btn,
+    .copy-btn {
+        height:
+            43px;
+    }
+
+    .admin-table {
+        display:
+            block;
+
+        overflow-x:
+            auto;
+
+        white-space:
+            nowrap;
+    }
+
+}
+
+/* =========================================================
+   RESPONSIVE — 430px
+   ========================================================= */
+
+@media (max-width: 430px) {
+
+    .header,
+    .container {
+        width:
+            95%;
+    }
+
+    .header {
+        padding:
+            18px;
+    }
+
+    .header h1 {
+        font-size:
+            19px;
+    }
+
+    .header p {
+        font-size:
+            12px;
+    }
+
+    .card {
+        padding:
+            17px;
+    }
+
+    .card h2 {
+        font-size:
+            18px;
+    }
+
+    .info {
+        font-size:
+            12px;
+    }
+
+    #adminKey {
+        font-size:
+            13px;
+
+        letter-spacing:
+            0.8px;
+    }
+
+    .admin-table th,
+    .admin-table td {
+        padding:
+            11px;
+
+        font-size:
+            11px;
+    }
+
+    .revoke-btn {
+        padding:
+            6px 9px;
+
+        font-size:
+            10px;
+    }
+
+}
+
+/* =========================================================
+   ACCESSIBILITY
+   ========================================================= */
+
+button:focus-visible,
+input:focus-visible {
+    outline:
+        2px solid #4dd9f5;
+
+    outline-offset:
+        3px;
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration:
+            0.01ms !important;
+
+        animation-iteration-count:
+            1 !important;
+
+        transition-duration:
+            0.01ms !important;
+
+        scroll-behavior:
+            auto !important;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+    <div class="header">
+
+        <h1>🔑 Admin Management</h1>
+
+        <p>
+            Project Java — Main Admin Control Panel
+        </p>
+
+    </div>
+
+
+    <div class="container">
+
+        <button
+            class="back-btn"
+            onclick="window.location.href='admin-dashboard.html'"
+        >
+            ← Back to Dashboard
+        </button>
+
+
+        <!-- ========================================= -->
+        <!-- ADMIN KEY -->
+        <!-- ========================================= -->
+
+        <div class="card">
+
+            <h2>🔑 Admin Key</h2>
+
+            <p class="info">
+
+                Generate an Admin Key and share it with a trusted
+                person who needs to become a Secondary Admin.
+
+                <br><br>
+
+                <strong>Important:</strong>
+                Generating a new key automatically disables the
+                previous active key.
+
+            </p>
+
+
+            <div class="key-box">
+
+                <input
+                    type="text"
+                    id="adminKey"
+                    placeholder="No active Admin Key"
+                    readonly
+                >
+
+                <button
+                    class="generate-btn"
+                    onclick="generateKey()"
+                >
+                    Generate New Key
+                </button>
+
+                <button
+                    class="copy-btn"
+                    onclick="copyKey()"
+                >
+                    Copy
+                </button>
+
+            </div>
+
+
+            <div
+                id="keyMessage"
+                class="message"
+            ></div>
+
+        </div>
+
+
+        <!-- ========================================= -->
+        <!-- SECONDARY ADMINS -->
+        <!-- ========================================= -->
+
+        <div class="card">
+
+            <h2>👥 Secondary Admins</h2>
+
+            <p class="info">
+
+                These admins can help manage exams and questions.
+                Only the Main Admin can revoke them.
+
+            </p>
+
+
+            <table class="admin-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Name</th>
+
+                        <th>Email</th>
+
+                        <th>Phone</th>
+
+                        <th>Status</th>
+
+                        <th>Action</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="adminsTable">
+
+                    <tr>
+
+                        <td colspan="5">
+                            Loading...
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        // =========================================
+        // LOAD CURRENT ADMIN KEY
+        // =========================================
+
+        async function loadCurrentKey() {
+
+            try {
+
+                const response =
+                    await fetch(
+                        "/api/admin-management/current-key"
+                    );
+
+                const data =
+                    await response.json();
+
+
+                if (!data.success) {
+
+                    showKeyMessage(
+                        data.message ||
+                        "Unable to load Admin Key.",
+                        true
+                    );
+
+                    return;
+                }
+
+
+                if (data.hasKey) {
+
+                    document.getElementById(
+                        "adminKey"
+                    ).value = data.inviteKey;
+
+                }
+
+            }
+            catch (error) {
+
+                console.error(error);
+
+                showKeyMessage(
+                    "Unable to connect to server.",
+                    true
+                );
+
+            }
+
+        }
+
+
+        // =========================================
+        // GENERATE NEW KEY
+        // =========================================
+
+        async function generateKey() {
+
+            const confirmation =
+                confirm(
+                    "Generate a new Admin Key?\n\n" +
+                    "Any previous active key will be revoked."
+                );
+
+
+            if (!confirmation) {
+
+                return;
+
+            }
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        "/api/admin-management/generate-key",
+                        {
+                            method: "POST",
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            }
+                        }
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (!data.success) {
+
+                    showKeyMessage(
+                        data.message ||
+                        "Unable to generate key.",
+                        true
+                    );
+
+                    return;
+
+                }
+
+
+                document.getElementById(
+                    "adminKey"
+                ).value = data.inviteKey;
+
+
+                showKeyMessage(
+                    "New Admin Key generated successfully.",
+                    false
+                );
+
+            }
+            catch (error) {
+
+                console.error(error);
+
+                showKeyMessage(
+                    "Unable to connect to server.",
+                    true
+                );
+
+            }
+
+        }
+
+
+        // =========================================
+        // COPY KEY
+        // =========================================
+
+        async function copyKey() {
+
+            const key =
+                document.getElementById(
+                    "adminKey"
+                ).value;
+
+
+            if (!key) {
+
+                showKeyMessage(
+                    "There is no Admin Key to copy.",
+                    true
+                );
+
+                return;
+
+            }
+
+
+            try {
+
+                await navigator.clipboard.writeText(
+                    key
+                );
+
+                showKeyMessage(
+                    "Admin Key copied.",
+                    false
+                );
+
+            }
+            catch (error) {
+
+                showKeyMessage(
+                    "Unable to copy the key.",
+                    true
+                );
+
+            }
+
+        }
+
+
+        // =========================================
+        // MESSAGE
+        // =========================================
+
+        function showKeyMessage(
+            message,
+            isError
+        ) {
+
+            const element =
+                document.getElementById(
+                    "keyMessage"
+                );
+
+
+            element.textContent =
+                message;
+
+
+            element.style.color =
+                isError
+                    ? "#dc2626"
+                    : "#15803d";
+
+        }
+
+
+        // =========================================
+        // LOAD SECONDARY ADMINS
+        // =========================================
+
+        async function loadAdmins() {
+
+            try {
+
+                const response =
+                    await fetch(
+                        "/api/admin-management/admins"
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                const table =
+                    document.getElementById(
+                        "adminsTable"
+                    );
+
+
+                if (!data.success) {
+
+                    table.innerHTML = `
+                        <tr>
+                            <td colspan="5">
+                                ${escapeHtml(
+                                    data.message ||
+                                    "Unable to load admins."
+                                )}
+                            </td>
+                        </tr>
+                    `;
+
+                    return;
+
+                }
+
+
+                if (data.admins.length === 0) {
+
+                    table.innerHTML = `
+                        <tr>
+                            <td colspan="5">
+                                No Secondary Admins yet.
+                            </td>
+                        </tr>
+                    `;
+
+                    return;
+
+                }
+
+
+                table.innerHTML =
+                    data.admins.map(admin => {
+
+                        const status =
+                            admin.admin_status;
+
+
+                        return `
+                            <tr>
+
+                                <td>
+                                    ${escapeHtml(
+                                        admin.full_name
+                                    )}
+                                </td>
+
+                                <td>
+                                    ${escapeHtml(
+                                        admin.email
+                                    )}
+                                </td>
+
+                                <td>
+                                    ${escapeHtml(
+                                        admin.phone || "-"
+                                    )}
+                                </td>
+
+                                <td class="${
+                                    status === "active"
+                                        ? "status-active"
+                                        : "status-revoked"
+                                }">
+
+                                    ${
+                                        status === "active"
+                                            ? "Active"
+                                            : "Revoked"
+                                    }
+
+                                </td>
+
+                                <td>
+
+                                    ${
+                                        status === "active"
+                                            ?
+                                            `
+                                            <button
+                                                class="revoke-btn"
+                                                onclick="revokeAdmin(${admin.id})"
+                                            >
+                                                Revoke
+                                            </button>
+                                            `
+                                            :
+                                            "-"
+                                    }
+
+                                </td>
+
+                            </tr>
+                        `;
+
+                    }).join("");
+
+            }
+            catch (error) {
+
+                console.error(error);
+
+                document.getElementById(
+                    "adminsTable"
+                ).innerHTML = `
+                    <tr>
+                        <td colspan="5">
+                            Unable to connect to server.
+                        </td>
+                    </tr>
+                `;
+
+            }
+
+        }
+
+
+        // =========================================
+        // REVOKE ADMIN
+        // =========================================
+
+        async function revokeAdmin(adminId) {
+
+            const confirmation =
+                confirm(
+                    "Are you sure you want to revoke this Secondary Admin?"
+                );
+
+
+            if (!confirmation) {
+
+                return;
+
+            }
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        `/api/admin-management/admins/${adminId}/revoke`,
+                        {
+                            method: "PUT",
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            }
+                        }
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (!data.success) {
+
+                    alert(
+                        data.message ||
+                        "Unable to revoke admin."
+                    );
+
+                    return;
+
+                }
+
+
+                alert(
+                    "Secondary Admin revoked successfully."
+                );
+
+
+                loadAdmins();
+
+            }
+            catch (error) {
+
+                console.error(error);
+
+                alert(
+                    "Unable to connect to server."
+                );
+
+            }
+
+        }
+
+
+        // =========================================
+        // HTML ESCAPE
+        // =========================================
+
+        function escapeHtml(value) {
+
+            if (value === null ||
+                value === undefined) {
+
+                return "";
+
+            }
+
+
+            return String(value)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+
+        }
+
+
+        // =========================================
+        // START PAGE
+        // =========================================
+
+        loadCurrentKey();
+
+        loadAdmins();
+
+    </script>
+
+</body>
+</html>

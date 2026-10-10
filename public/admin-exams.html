@@ -1,0 +1,2244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Manage Exams | Project Java</title>
+
+   <style>
+/* =====================================================
+   PROJECT JAVA - ADMIN EXAMS
+   Dark Glass + Cyan Professional Theme
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    color: #eaf9ff;
+    background:
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(0, 212, 255, 0.13),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 90% 85%,
+            rgba(0, 119, 182, 0.14),
+            transparent 32%
+        ),
+        linear-gradient(
+            135deg,
+            #050b14 0%,
+            #08111f 45%,
+            #0b2035 100%
+        );
+
+    background-size: 180% 180%;
+    animation: backgroundMove 18s ease infinite;
+    overflow-x: hidden;
+}
+
+/* =====================================================
+   ANIMATED BACKGROUND
+===================================================== */
+
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+
+    width: 330px;
+    height: 330px;
+
+    border-radius: 50%;
+
+    pointer-events: none;
+    z-index: -1;
+
+    filter: blur(45px);
+}
+
+body::before {
+    top: -170px;
+    left: -120px;
+
+    background: rgba(0, 212, 255, 0.09);
+
+    animation: floatingGlowOne 9s ease-in-out infinite;
+}
+
+body::after {
+    right: -160px;
+    bottom: -160px;
+
+    background: rgba(0, 119, 182, 0.11);
+
+    animation: floatingGlowTwo 11s ease-in-out infinite;
+}
+
+@keyframes backgroundMove {
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+@keyframes floatingGlowOne {
+
+    0%,
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    50% {
+        transform: translate(35px, 25px) scale(1.08);
+    }
+}
+
+@keyframes floatingGlowTwo {
+
+    0%,
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    50% {
+        transform: translate(-35px, -25px) scale(1.08);
+    }
+}
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.header {
+    position: relative;
+
+    width: 100%;
+
+    padding: 20px 4%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(7, 22, 36, 0.94),
+            rgba(5, 15, 27, 0.88)
+        );
+
+    border-bottom: 1px solid rgba(0, 212, 255, 0.12);
+
+    box-shadow:
+        0 12px 35px rgba(0, 0, 0, 0.25);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    animation: headerAppear 0.7s ease both;
+}
+
+.header::after {
+    content: "";
+
+    position: absolute;
+
+    bottom: 0;
+    left: 7%;
+
+    width: 86%;
+    height: 2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #00d4ff,
+            #0077b6,
+            transparent
+        );
+
+    opacity: 0.65;
+}
+
+@keyframes headerAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =====================================================
+   BRAND
+===================================================== */
+
+.brand h1 {
+    font-size: 24px;
+    letter-spacing: 2px;
+
+    color: #f2fcff;
+
+    text-shadow:
+        0 0 18px rgba(0, 212, 255, 0.18);
+}
+
+.brand p {
+    color: #7695a6;
+
+    font-size: 12px;
+
+    margin-top: 5px;
+
+    letter-spacing: 0.5px;
+}
+
+/* =====================================================
+   BACK BUTTON
+===================================================== */
+
+.back-btn {
+    border: 1px solid rgba(0, 212, 255, 0.15);
+
+    background:
+        rgba(0, 180, 216, 0.08);
+
+    color: #bcefff;
+
+    padding: 10px 16px;
+
+    border-radius: 9px;
+
+    cursor: pointer;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    transition:
+        transform 0.22s ease,
+        background 0.22s ease,
+        border-color 0.22s ease,
+        box-shadow 0.22s ease;
+}
+
+.back-btn:hover {
+    background:
+        rgba(0, 180, 216, 0.16);
+
+    border-color:
+        rgba(0, 212, 255, 0.35);
+
+    color: white;
+
+    transform: translateX(-3px);
+
+    box-shadow:
+        0 8px 22px rgba(0, 180, 216, 0.12);
+}
+
+/* =====================================================
+   MAIN CONTAINER
+===================================================== */
+
+.container {
+    width: 92%;
+    max-width: 1150px;
+
+    margin: 32px auto 70px;
+
+    animation: pageAppear 0.8s ease both;
+}
+
+@keyframes pageAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(22px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =====================================================
+   SUBJECT BANNER
+===================================================== */
+
+.subject-banner {
+    position: relative;
+
+    padding: 27px;
+
+    margin-bottom: 27px;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.075),
+            rgba(255, 255, 255, 0.025)
+        );
+
+    border: 1px solid rgba(255, 255, 255, 0.09);
+
+    box-shadow:
+        0 18px 45px rgba(0, 0, 0, 0.20);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    overflow: hidden;
+}
+
+.subject-banner::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 7%;
+
+    width: 86%;
+    height: 2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #00d4ff,
+            #0077b6,
+            transparent
+        );
+
+    opacity: 0.65;
+}
+
+.subject-banner::after {
+    content: "";
+
+    position: absolute;
+
+    width: 160px;
+    height: 160px;
+
+    right: -70px;
+    top: -70px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(0, 212, 255, 0.06);
+
+    filter: blur(10px);
+}
+
+/* =====================================================
+   SUBJECT CODE
+===================================================== */
+
+.subject-banner .code {
+    display: inline-block;
+
+    padding: 6px 11px;
+
+    margin-bottom: 11px;
+
+    border-radius: 7px;
+
+    background:
+        rgba(0, 180, 216, 0.11);
+
+    border:
+        1px solid rgba(0, 212, 255, 0.17);
+
+    color: #5de1ff;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+    box-shadow:
+        0 0 18px rgba(0, 212, 255, 0.05);
+}
+
+.subject-banner h2 {
+    position: relative;
+
+    font-size: 27px;
+
+    color: #effaff;
+
+    letter-spacing: 0.2px;
+}
+
+.subject-banner p {
+    color: #7895a5;
+
+    margin-top: 8px;
+
+    font-size: 13px;
+}
+
+/* =====================================================
+   TOOLBAR
+===================================================== */
+
+.toolbar {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 18px;
+}
+
+.toolbar h2 {
+    color: #eaf9ff;
+
+    font-size: 21px;
+
+    letter-spacing: 0.3px;
+}
+
+.toolbar h2::after {
+    content: "";
+
+    display: block;
+
+    width: 35px;
+    height: 2px;
+
+    margin-top: 7px;
+
+    border-radius: 5px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #00d4ff,
+            transparent
+        );
+}
+
+/* =====================================================
+   CREATE BUTTON
+===================================================== */
+
+.create-btn {
+    border: 1px solid rgba(0, 212, 255, 0.18);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0, 180, 216, 0.28),
+            rgba(0, 119, 182, 0.18)
+        );
+
+    color: #eaffff;
+
+    padding: 11px 18px;
+
+    border-radius: 9px;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.22s ease,
+        box-shadow 0.22s ease,
+        border-color 0.22s ease,
+        background 0.22s ease;
+}
+
+.create-btn:hover {
+    transform: translateY(-2px);
+
+    border-color:
+        rgba(0, 212, 255, 0.38);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0, 180, 216, 0.38),
+            rgba(0, 119, 182, 0.26)
+        );
+
+    box-shadow:
+        0 10px 28px rgba(0, 180, 216, 0.14);
+}
+
+.create-btn:active {
+    transform: translateY(0) scale(0.98);
+}
+
+/* =====================================================
+   EXAM GRID
+===================================================== */
+
+.exam-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 20px;
+}
+
+/* =====================================================
+   EXAM CARD
+===================================================== */
+
+.exam-card {
+    position: relative;
+
+    padding: 22px;
+
+    border-radius: 17px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.07),
+            rgba(255, 255, 255, 0.025)
+        );
+
+    border:
+        1px solid rgba(255, 255, 255, 0.08);
+
+    box-shadow:
+        0 15px 38px rgba(0, 0, 0, 0.18);
+
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+
+    overflow: hidden;
+
+    transition:
+        transform 0.28s ease,
+        border-color 0.28s ease,
+        box-shadow 0.28s ease;
+
+    animation: examCardAppear 0.5s ease both;
+}
+
+.exam-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 8%;
+
+    width: 84%;
+    height: 2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #00d4ff,
+            transparent
+        );
+
+    opacity: 0.35;
+
+    transition:
+        opacity 0.25s ease;
+}
+
+.exam-card:hover {
+    transform: translateY(-6px);
+
+    border-color:
+        rgba(0, 212, 255, 0.18);
+
+    box-shadow:
+        0 22px 48px rgba(0, 0, 0, 0.28),
+        0 0 25px rgba(0, 180, 216, 0.05);
+}
+
+.exam-card:hover::before {
+    opacity: 0.85;
+}
+
+@keyframes examCardAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =====================================================
+   STATUS
+===================================================== */
+
+.status {
+    display: inline-block;
+
+    padding: 5px 10px;
+
+    border-radius: 6px;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: 0.8px;
+
+    margin-bottom: 14px;
+}
+
+.draft {
+    background:
+        rgba(245, 158, 11, 0.10);
+
+    border:
+        1px solid rgba(245, 158, 11, 0.16);
+
+    color: #f7c86a;
+}
+
+.published {
+    background:
+        rgba(34, 197, 94, 0.09);
+
+    border:
+        1px solid rgba(34, 197, 94, 0.15);
+
+    color: #72e39a;
+}
+
+/* =====================================================
+   EXAM TEXT
+===================================================== */
+
+.exam-card h3 {
+    color: #effaff;
+
+    font-size: 18px;
+
+    margin-bottom: 8px;
+
+    line-height: 1.35;
+}
+
+.exam-card p {
+    color: #7895a5;
+
+    font-size: 12px;
+
+    margin-bottom: 17px;
+
+    line-height: 1.5;
+}
+
+/* =====================================================
+   EXAM INFO
+===================================================== */
+
+.exam-info {
+    display: flex;
+
+    gap: 8px;
+
+    flex-wrap: wrap;
+
+    margin-bottom: 18px;
+}
+
+.info {
+    background:
+        rgba(0, 0, 0, 0.20);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.06);
+
+    padding: 7px 10px;
+
+    border-radius: 7px;
+
+    font-size: 11px;
+
+    color: #9bb5c1;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.exam-card:hover .info {
+    background:
+        rgba(0, 180, 216, 0.055);
+
+    border-color:
+        rgba(0, 212, 255, 0.09);
+}
+
+/* =====================================================
+   EXAM ACTIONS
+===================================================== */
+
+.exam-actions {
+    display: flex;
+
+    gap: 8px;
+
+    padding-top: 5px;
+}
+
+.exam-actions button {
+    flex: 1;
+
+    border: 1px solid transparent;
+
+    padding: 10px 8px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.exam-actions button:hover {
+    opacity: 1;
+
+    transform: translateY(-2px);
+}
+
+.exam-actions button:active {
+    transform: translateY(0) scale(0.97);
+}
+
+/* Questions */
+
+.questions-btn {
+    background:
+        rgba(0, 180, 216, 0.08);
+
+    border-color:
+        rgba(0, 212, 255, 0.12) !important;
+
+    color: #70ddf7;
+}
+
+.questions-btn:hover {
+    background:
+        rgba(0, 180, 216, 0.16);
+
+    border-color:
+        rgba(0, 212, 255, 0.28) !important;
+
+    box-shadow:
+        0 7px 18px rgba(0, 180, 216, 0.08);
+}
+
+/* Publish */
+
+.publish-btn {
+    background:
+        rgba(34, 197, 94, 0.08);
+
+    border-color:
+        rgba(34, 197, 94, 0.13) !important;
+
+    color: #72e39a;
+}
+
+.publish-btn:hover {
+    background:
+        rgba(34, 197, 94, 0.15);
+
+    border-color:
+        rgba(34, 197, 94, 0.25) !important;
+
+    box-shadow:
+        0 7px 18px rgba(34, 197, 94, 0.07);
+}
+
+/* Delete */
+
+.delete-btn {
+    background:
+        rgba(239, 68, 68, 0.07);
+
+    border-color:
+        rgba(239, 68, 68, 0.13) !important;
+
+    color: #f39a9a;
+}
+
+.delete-btn:hover {
+    background:
+        rgba(239, 68, 68, 0.14);
+
+    border-color:
+        rgba(239, 68, 68, 0.27) !important;
+
+    box-shadow:
+        0 7px 18px rgba(239, 68, 68, 0.07);
+}
+
+/* =====================================================
+   LOADING / EMPTY
+===================================================== */
+
+.loading,
+.empty {
+    grid-column: 1 / -1;
+
+    padding: 45px 25px;
+
+    text-align: center;
+
+    border-radius: 17px;
+
+    color: #7895a5;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.055),
+            rgba(255, 255, 255, 0.02)
+        );
+
+    border:
+        1px solid rgba(255, 255, 255, 0.07);
+
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.16);
+
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+}
+
+.loading {
+    animation: loadingPulse 1.8s ease-in-out infinite;
+}
+
+@keyframes loadingPulse {
+
+    0%,
+    100% {
+        opacity: 0.65;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+.empty h3 {
+    color: #dceff5;
+
+    font-size: 18px;
+
+    margin-bottom: 4px;
+}
+
+.empty p {
+    color: #718c99;
+
+    font-size: 12px;
+}
+
+/* =====================================================
+   MODAL OVERLAY
+===================================================== */
+
+.modal {
+    display: none;
+
+    position: fixed;
+
+    inset: 0;
+
+    padding: 20px;
+
+    background:
+        rgba(2, 8, 15, 0.76);
+
+    justify-content: center;
+    align-items: center;
+
+    z-index: 9999;
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.modal.show {
+    display: flex;
+
+    animation: modalBackground 0.25s ease both;
+}
+
+@keyframes modalBackground {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* =====================================================
+   MODAL BOX
+===================================================== */
+
+.modal-box {
+    position: relative;
+
+    width: 100%;
+    max-width: 500px;
+
+    padding: 28px;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(10, 27, 43, 0.98),
+            rgba(5, 17, 29, 0.98)
+        );
+
+    border:
+        1px solid rgba(0, 212, 255, 0.15);
+
+    box-shadow:
+        0 25px 80px rgba(0, 0, 0, 0.50),
+        0 0 35px rgba(0, 180, 216, 0.06);
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    animation: modalAppear 0.3s ease both;
+}
+
+.modal-box::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 8%;
+
+    width: 84%;
+    height: 2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #00d4ff,
+            #0077b6,
+            transparent
+        );
+
+    opacity: 0.75;
+}
+
+@keyframes modalAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(25px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.modal-box h2 {
+    color: #effaff;
+
+    font-size: 21px;
+
+    margin-bottom: 7px;
+}
+
+.modal-box > p {
+    color: #7895a5;
+
+    font-size: 12px;
+
+    margin-bottom: 23px;
+
+    line-height: 1.5;
+}
+
+/* =====================================================
+   FORM
+===================================================== */
+
+.form-group {
+    margin-bottom: 17px;
+}
+
+.form-group label {
+    display: block;
+
+    color: #b9d5df;
+
+    font-size: 12px;
+
+    font-weight: 650;
+
+    margin-bottom: 7px;
+}
+
+.form-group input {
+    width: 100%;
+
+    padding: 12px 13px;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.10);
+
+    border-radius: 9px;
+
+    outline: none;
+
+    background:
+        rgba(0, 0, 0, 0.25);
+
+    color: #eaf9ff;
+
+    font-size: 13px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.form-group input::placeholder {
+    color: #526d79;
+}
+
+.form-group input:hover {
+    border-color:
+        rgba(0, 212, 255, 0.16);
+}
+
+.form-group input:focus {
+    border-color:
+        rgba(0, 212, 255, 0.45);
+
+    background:
+        rgba(0, 180, 216, 0.035);
+
+    box-shadow:
+        0 0 0 3px rgba(0, 212, 255, 0.08),
+        0 0 20px rgba(0, 180, 216, 0.05);
+}
+
+/* Number input arrows */
+
+.form-group input[type="number"]::-webkit-inner-spin-button,
+.form-group input[type="number"]::-webkit-outer-spin-button {
+    opacity: 0.5;
+}
+
+/* =====================================================
+   MODAL BUTTONS
+===================================================== */
+
+.modal-actions {
+    display: flex;
+
+    gap: 10px;
+
+    margin-top: 22px;
+}
+
+.modal-actions button {
+    flex: 1;
+
+    padding: 11px;
+
+    border-radius: 9px;
+
+    cursor: pointer;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.cancel-btn {
+    border:
+        1px solid rgba(255, 255, 255, 0.09);
+
+    background:
+        rgba(255, 255, 255, 0.05);
+
+    color: #9db3bd;
+}
+
+.cancel-btn:hover {
+    background:
+        rgba(255, 255, 255, 0.09);
+
+    color: #eaf9ff;
+
+    transform: translateY(-2px);
+}
+
+.save-btn {
+    border:
+        1px solid rgba(0, 212, 255, 0.20);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0, 180, 216, 0.30),
+            rgba(0, 119, 182, 0.22)
+        );
+
+    color: #eaffff;
+}
+
+.save-btn:hover {
+    border-color:
+        rgba(0, 212, 255, 0.40);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0, 180, 216, 0.40),
+            rgba(0, 119, 182, 0.30)
+        );
+
+    box-shadow:
+        0 9px 25px rgba(0, 180, 216, 0.12);
+
+    transform: translateY(-2px);
+}
+
+.modal-actions button:active {
+    transform: translateY(0) scale(0.98);
+}
+
+/* =====================================================
+   MESSAGE
+===================================================== */
+
+.message {
+    margin-top: 15px;
+
+    padding: 10px 12px;
+
+    border-radius: 8px;
+
+    font-size: 12px;
+
+    display: none;
+
+    line-height: 1.4;
+}
+
+.message.error {
+    display: block;
+
+    background:
+        rgba(239, 68, 68, 0.09);
+
+    border:
+        1px solid rgba(239, 68, 68, 0.15);
+
+    color: #f4a1a1;
+}
+
+.message.success {
+    display: block;
+
+    background:
+        rgba(34, 197, 94, 0.08);
+
+    border:
+        1px solid rgba(34, 197, 94, 0.14);
+
+    color: #78e4a0;
+}
+
+/* =====================================================
+   SCROLLBAR
+===================================================== */
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #050d17;
+}
+
+::-webkit-scrollbar-thumb {
+    background:
+        linear-gradient(
+            180deg,
+            #008db8,
+            #005779
+        );
+
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #00a9d4;
+}
+
+/* =====================================================
+   FOCUS
+===================================================== */
+
+button:focus-visible,
+input:focus-visible {
+    outline: 2px solid #4dd9f5;
+    outline-offset: 3px;
+}
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 900px) {
+
+    .exam-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .container {
+        width: 94%;
+    }
+}
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 750px) {
+
+    .header {
+        padding: 17px 5%;
+
+        gap: 15px;
+    }
+
+    .brand h1 {
+        font-size: 19px;
+    }
+
+    .brand p {
+        font-size: 11px;
+    }
+
+    .back-btn {
+        padding: 9px 12px;
+
+        font-size: 11px;
+    }
+
+    .container {
+        width: 94%;
+
+        margin-top: 22px;
+    }
+
+    .subject-banner {
+        padding: 21px;
+    }
+
+    .subject-banner h2 {
+        font-size: 22px;
+    }
+
+    .toolbar {
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 13px;
+    }
+
+    .create-btn {
+        width: 100%;
+    }
+
+    .exam-actions {
+        flex-direction: column;
+    }
+
+    .exam-actions button {
+        width: 100%;
+    }
+}
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 480px) {
+
+    .header {
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+    .back-btn {
+        width: 100%;
+    }
+
+    .subject-banner {
+        padding: 18px;
+    }
+
+    .subject-banner h2 {
+        font-size: 20px;
+    }
+
+    .subject-banner p {
+        font-size: 12px;
+    }
+
+    .exam-card {
+        padding: 18px;
+    }
+
+    .exam-card h3 {
+        font-size: 16px;
+    }
+
+    .exam-info {
+        flex-direction: column;
+    }
+
+    .info {
+        width: 100%;
+    }
+
+    .modal {
+        padding: 12px;
+    }
+
+    .modal-box {
+        padding: 21px;
+
+        border-radius: 15px;
+    }
+
+    .modal-actions {
+        flex-direction: column;
+    }
+
+    .modal-actions button {
+        width: 100%;
+    }
+}
+
+/* =====================================================
+   REDUCED MOTION
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="brand">
+        <h1>PROJECT JAVA</h1>
+        <p>Examination Management</p>
+    </div>
+
+    <button
+        class="back-btn"
+        onclick="window.location.href='admin-dashboard.html'"
+    >
+        ← Dashboard
+    </button>
+
+</header>
+
+
+<main class="container">
+
+    <!-- SUBJECT -->
+
+    <section class="subject-banner">
+
+        <span
+            class="code"
+            id="subjectCode"
+        >
+            Loading...
+        </span>
+
+        <h2 id="subjectName">
+            Loading subject...
+        </h2>
+
+        <p>
+            Create and manage examinations for this subject.
+        </p>
+
+    </section>
+
+
+    <!-- TOOLBAR -->
+
+    <div class="toolbar">
+
+        <div>
+            <h2>Examinations</h2>
+        </div>
+
+        <button
+            class="create-btn"
+            id="createExamBtn"
+        >
+            + Create New Exam
+        </button>
+
+    </div>
+
+
+    <!-- EXAMS -->
+
+    <section
+        class="exam-grid"
+        id="examGrid"
+    >
+
+        <div class="loading">
+            Loading examinations...
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- =========================
+     CREATE EXAM MODAL
+========================== -->
+
+<div
+    class="modal"
+    id="examModal"
+>
+
+    <div class="modal-box">
+
+        <h2>Create New Exam</h2>
+
+        <p>
+            Enter the basic details of the examination.
+        </p>
+
+
+        <div class="form-group">
+
+            <label for="examTitle">
+                Exam Title
+            </label>
+
+            <input
+                type="text"
+                id="examTitle"
+                placeholder="Example: AOA Unit Test 1"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="duration">
+                Duration (minutes)
+            </label>
+
+            <input
+                type="number"
+                id="duration"
+                value="30"
+                min="1"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="totalMarks">
+                Total Marks
+            </label>
+
+            <input
+                type="number"
+                id="totalMarks"
+                value="10"
+                min="1"
+            >
+
+        </div>
+
+
+        <div
+            id="message"
+            class="message"
+        ></div>
+
+
+        <div class="modal-actions">
+
+            <button
+                class="cancel-btn"
+                id="cancelBtn"
+            >
+                Cancel
+            </button>
+
+            <button
+                class="save-btn"
+                id="saveExamBtn"
+            >
+                Create Exam
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    let selectedSubjectId = null;
+
+
+    // =================================
+    // GET SUBJECT ID FROM URL
+    // =================================
+
+    function getSubjectId() {
+
+        const params =
+            new URLSearchParams(
+                window.location.search
+            );
+
+        return params.get("subjectId");
+    }
+
+
+
+    // =================================
+    // LOAD SUBJECT
+    // =================================
+
+    async function loadSubject() {
+
+        try {
+
+            selectedSubjectId =
+                getSubjectId();
+
+
+            if (!selectedSubjectId) {
+
+                alert(
+                    "No subject selected."
+                );
+
+                window.location.href =
+                    "admin-dashboard.html";
+
+                return;
+            }
+
+
+            const response =
+                await fetch(
+                    "/api/admin-subjects"
+                );
+
+
+            const data =
+                await response.json();
+
+
+            if (!response.ok ||
+                !data.success) {
+
+                alert(
+                    "Unable to load subjects."
+                );
+
+                return;
+            }
+
+
+            const subject =
+                data.subjects.find(
+                    function(item) {
+
+                        return String(item.id) ===
+                            String(selectedSubjectId);
+
+                    }
+                );
+
+
+            if (!subject) {
+
+                alert(
+                    "You do not have access to this subject."
+                );
+
+                window.location.href =
+                    "admin-dashboard.html";
+
+                return;
+            }
+
+
+            document.getElementById(
+                "subjectCode"
+            ).textContent =
+                subject.subject_code;
+
+
+            document.getElementById(
+                "subjectName"
+            ).textContent =
+                subject.subject_name;
+
+
+            loadExams();
+
+
+        } catch (error) {
+
+            console.error(
+                "Subject loading error:",
+                error
+            );
+        }
+    }
+
+
+
+    // =================================
+    // LOAD EXAMS
+    // =================================
+
+    async function loadExams() {
+
+        const examGrid =
+            document.getElementById(
+                "examGrid"
+            );
+
+
+        try {
+
+            const response =
+                await fetch(
+                    `/api/admin-exams?subjectId=${selectedSubjectId}`
+                );
+
+
+            const data =
+                await response.json();
+
+
+            if (!response.ok ||
+                !data.success) {
+
+                examGrid.innerHTML =
+                    `
+                    <div class="empty">
+                        Unable to load examinations.
+                    </div>
+                    `;
+
+                return;
+            }
+
+
+            if (!data.exams ||
+                data.exams.length === 0) {
+
+                examGrid.innerHTML =
+                    `
+                    <div class="empty">
+                        <h3>No examinations yet</h3>
+
+                        <p style="margin-top:8px;">
+                            Click "Create New Exam"
+                            to create your first examination.
+                        </p>
+                    </div>
+                    `;
+
+                return;
+            }
+
+
+            examGrid.innerHTML = "";
+
+
+            data.exams.forEach(
+                function(exam) {
+
+                    const card =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    card.className =
+                        "exam-card";
+
+
+                    const statusClass =
+                        exam.status === "published"
+                            ? "published"
+                            : "draft";
+
+
+                    const statusText =
+                        exam.status === "published"
+                            ? "PUBLISHED"
+                            : "DRAFT";
+
+
+                    card.innerHTML = `
+
+                        <span
+                            class="status ${statusClass}"
+                        >
+                            ${statusText}
+                        </span>
+
+                        <h3>
+                            ${exam.exam_title}
+                        </h3>
+
+                        <p>
+                            Examination for
+                            ${exam.subject_name}
+                        </p>
+
+                        <div class="exam-info">
+
+                            <span class="info">
+                                ⏱ ${exam.duration_minutes} minutes
+                            </span>
+
+                            <span class="info">
+                                🎯 ${exam.total_marks} marks
+                            </span>
+
+                            <span class="info">
+                                ❓ ${exam.question_count || 0} questions
+                            </span>
+
+                        </div>
+
+                        <div class="exam-actions">
+
+                            <button
+                                class="questions-btn"
+                                onclick="manageQuestions(${exam.id})"
+                            >
+                                Questions
+                            </button>
+
+                            <button
+                                class="publish-btn"
+                                onclick="togglePublish(${exam.id}, '${exam.status}')"
+                            >
+                                ${
+                                    exam.status === "published"
+                                        ? "Unpublish"
+                                        : "Publish"
+                                }
+                            </button>
+
+                            <button
+                                class="delete-btn"
+                                onclick="deleteExam(${exam.id})"
+                            >
+                                Delete
+                            </button>
+
+                        </div>
+
+                    `;
+
+
+                    examGrid.appendChild(card);
+
+                }
+            );
+
+
+        } catch (error) {
+
+            console.error(
+                "Exam loading error:",
+                error
+            );
+
+            examGrid.innerHTML =
+                `
+                <div class="empty">
+                    Unable to connect to the server.
+                </div>
+                `;
+        }
+    }
+
+
+
+    // =================================
+    // CREATE EXAM
+    // =================================
+
+    document.getElementById(
+        "createExamBtn"
+    ).addEventListener(
+        "click",
+        function() {
+
+            document.getElementById(
+                "examModal"
+            ).classList.add("show");
+
+        }
+    );
+
+
+
+    // =================================
+    // CLOSE MODAL
+    // =================================
+
+    document.getElementById(
+        "cancelBtn"
+    ).addEventListener(
+        "click",
+        function() {
+
+            document.getElementById(
+                "examModal"
+            ).classList.remove("show");
+
+        }
+    );
+
+
+
+    // =================================
+    // SAVE EXAM
+    // =================================
+
+    document.getElementById(
+        "saveExamBtn"
+    ).addEventListener(
+        "click",
+        async function() {
+
+            const title =
+                document.getElementById(
+                    "examTitle"
+                ).value.trim();
+
+
+            const duration =
+                Number(
+                    document.getElementById(
+                        "duration"
+                    ).value
+                );
+
+
+            const totalMarks =
+                Number(
+                    document.getElementById(
+                        "totalMarks"
+                    ).value
+                );
+
+
+            const message =
+                document.getElementById(
+                    "message"
+                );
+
+
+            message.className =
+                "message";
+
+
+            message.textContent = "";
+
+
+            if (!title) {
+
+                message.textContent =
+                    "Please enter an exam title.";
+
+                message.classList.add(
+                    "error"
+                );
+
+                return;
+            }
+
+
+            if (duration <= 0) {
+
+                message.textContent =
+                    "Duration must be greater than 0.";
+
+                message.classList.add(
+                    "error"
+                );
+
+                return;
+            }
+
+
+            if (totalMarks <= 0) {
+
+                message.textContent =
+                    "Total marks must be greater than 0.";
+
+                message.classList.add(
+                    "error"
+                );
+
+                return;
+            }
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        "/api/admin-exams",
+                        {
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            body: JSON.stringify({
+                                subjectId:
+                                    selectedSubjectId,
+
+                                examTitle:
+                                    title,
+
+                                durationMinutes:
+                                    duration,
+
+                                totalMarks:
+                                    totalMarks
+                            })
+                        }
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (!response.ok ||
+                    !data.success) {
+
+                    message.textContent =
+                        data.message ||
+                        "Unable to create exam.";
+
+                    message.classList.add(
+                        "error"
+                    );
+
+                    return;
+                }
+
+
+                message.textContent =
+                    "Exam created successfully!";
+
+                message.classList.add(
+                    "success"
+                );
+
+
+                setTimeout(
+                    function() {
+
+                        document.getElementById(
+                            "examModal"
+                        ).classList.remove(
+                            "show"
+                        );
+
+
+                        document.getElementById(
+                            "examTitle"
+                        ).value = "";
+
+
+                        loadExams();
+
+                    },
+                    700
+                );
+
+
+            } catch (error) {
+
+                console.error(
+                    "Create exam error:",
+                    error
+                );
+
+                message.textContent =
+                    "Unable to connect to the server.";
+
+                message.classList.add(
+                    "error"
+                );
+            }
+
+        }
+    );
+
+
+
+    // =================================
+    // QUESTION MANAGEMENT
+    // =================================
+
+    function manageQuestions(examId) {
+
+        window.location.href =
+            `admin-questions.html?examId=${examId}`;
+    }
+
+
+
+    // =================================
+    // PUBLISH / UNPUBLISH
+    // =================================
+
+    async function togglePublish(
+        examId,
+        currentStatus
+    ) {
+
+        const newStatus =
+            currentStatus === "published"
+                ? "draft"
+                : "published";
+
+
+        try {
+
+            const response =
+                await fetch(
+                    `/api/admin-exams/${examId}/status`,
+                    {
+                        method: "PUT",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body: JSON.stringify({
+                            status: newStatus
+                        })
+                    }
+                );
+
+
+            const data =
+                await response.json();
+
+
+            if (!response.ok ||
+                !data.success) {
+
+                alert(
+                    data.message ||
+                    "Unable to change exam status."
+                );
+
+                return;
+            }
+
+
+            loadExams();
+
+
+        } catch (error) {
+
+            console.error(
+                "Status update error:",
+                error
+            );
+
+            alert(
+                "Unable to connect to the server."
+            );
+        }
+    }
+
+
+
+    // =================================
+    // DELETE EXAM
+    // =================================
+
+    async function deleteExam(examId) {
+
+        const confirmed =
+            confirm(
+                "Are you sure you want to delete this exam? All its questions will also be deleted."
+            );
+
+
+        if (!confirmed) {
+            return;
+        }
+
+
+        try {
+
+            const response =
+                await fetch(
+                    `/api/admin-exams/${examId}`,
+                    {
+                        method: "DELETE"
+                    }
+                );
+
+
+            const data =
+                await response.json();
+
+
+            if (!response.ok ||
+                !data.success) {
+
+                alert(
+                    data.message ||
+                    "Unable to delete exam."
+                );
+
+                return;
+            }
+
+
+            loadExams();
+
+
+        } catch (error) {
+
+            console.error(
+                "Delete exam error:",
+                error
+            );
+
+            alert(
+                "Unable to connect to the server."
+            );
+        }
+    }
+
+
+
+    // START
+
+    loadSubject();
+
+</script>
+
+</body>
+</html>

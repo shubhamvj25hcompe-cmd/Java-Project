@@ -1,0 +1,1859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard | Project Java</title>
+
+    <style>
+/* =========================================================
+   PROJECT JAVA
+   ADMIN DASHBOARD — PROFESSIONAL DARK GLASS UI
+   ========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    color: #e8f7ff;
+
+    background:
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(0, 212, 255, 0.12),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 90% 90%,
+            rgba(0, 119, 182, 0.14),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #050b14 0%,
+            #08111f 45%,
+            #0b2035 100%
+        );
+
+    background-size: 180% 180%;
+
+    animation:
+        backgroundMove 18s ease infinite;
+
+    overflow-x: hidden;
+}
+
+@keyframes backgroundMove {
+
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* =========================================================
+   BACKGROUND GLOW
+   ========================================================= */
+
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    z-index: -1;
+
+    filter: blur(30px);
+}
+
+body::before {
+    width: 320px;
+    height: 320px;
+
+    top: -150px;
+    left: -100px;
+
+    background:
+        rgba(0, 212, 255, 0.10);
+
+    animation:
+        floatingGlow 9s ease-in-out infinite;
+}
+
+body::after {
+    width: 360px;
+    height: 360px;
+
+    right: -160px;
+    bottom: -160px;
+
+    background:
+        rgba(0, 119, 182, 0.12);
+
+    animation:
+        floatingGlowReverse 11s ease-in-out infinite;
+}
+
+@keyframes floatingGlow {
+
+    0%,
+    100% {
+        transform:
+            translate(0, 0)
+            scale(1);
+    }
+
+    50% {
+        transform:
+            translate(35px, 30px)
+            scale(1.08);
+    }
+}
+
+@keyframes floatingGlowReverse {
+
+    0%,
+    100% {
+        transform:
+            translate(0, 0)
+            scale(1);
+    }
+
+    50% {
+        transform:
+            translate(-35px, -25px)
+            scale(1.08);
+    }
+}
+
+/* =========================================================
+   MAIN LAYOUT
+   ========================================================= */
+
+.dashboard {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* =========================================================
+   SIDEBAR
+   ========================================================= */
+
+.sidebar {
+    width: 255px;
+    min-height: 100vh;
+
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 24px 17px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(5, 15, 28, 0.97),
+            rgba(7, 23, 39, 0.94)
+        );
+
+    border-right:
+        1px solid rgba(255, 255, 255, 0.08);
+
+    box-shadow:
+        15px 0 45px rgba(0, 0, 0, 0.20);
+
+    backdrop-filter:
+        blur(20px);
+
+    -webkit-backdrop-filter:
+        blur(20px);
+
+    z-index: 100;
+}
+
+/* =========================================================
+   LOGO
+   ========================================================= */
+
+.logo {
+    padding:
+        10px 12px 24px;
+
+    border-bottom:
+        1px solid rgba(255, 255, 255, 0.08);
+}
+
+.logo h1 {
+    font-size: 23px;
+
+    letter-spacing: 1.5px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #58ddff
+        );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+}
+
+.logo p {
+    margin-top: 7px;
+
+    color: #7593a5;
+
+    font-size: 12px;
+
+    letter-spacing: 0.2px;
+}
+
+/* =========================================================
+   ADMIN BADGE
+   ========================================================= */
+
+.admin-badge {
+    margin-top: 19px;
+
+    padding: 12px 13px;
+
+    border-radius: 11px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0, 212, 255, 0.10),
+            rgba(0, 119, 182, 0.07)
+        );
+
+    border:
+        1px solid rgba(0, 212, 255, 0.16);
+
+    color: #a9eafa;
+
+    font-size: 13px;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.03);
+}
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+
+.navigation {
+    margin-top: 27px;
+}
+
+.navigation h4 {
+    padding:
+        0 12px 10px;
+
+    color: #60798a;
+
+    font-size: 10px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1.4px;
+}
+
+.nav-item {
+    width: 100%;
+
+    border: none;
+
+    background: transparent;
+
+    color: #91a9b8;
+
+    padding:
+        13px 14px;
+
+    margin-bottom: 6px;
+
+    border-radius: 10px;
+
+    text-align: left;
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        transform 0.2s ease,
+        box-shadow 0.25s ease;
+}
+
+.nav-item:hover {
+    color: #ffffff;
+
+    background:
+        rgba(0, 212, 255, 0.08);
+
+    transform:
+        translateX(3px);
+}
+
+.nav-item.active {
+    color: #ffffff;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0, 180, 216, 0.20),
+            rgba(0, 119, 182, 0.13)
+        );
+
+    border:
+        1px solid rgba(0, 212, 255, 0.13);
+
+    box-shadow:
+        0 7px 20px
+        rgba(0, 180, 216, 0.08);
+}
+
+/* =========================================================
+   LOGOUT
+   ========================================================= */
+
+.logout {
+    margin-top: auto;
+
+    background:
+        rgba(239, 68, 68, 0.07);
+
+    color: #e89a9a;
+
+    border:
+        1px solid rgba(239, 68, 68, 0.08);
+}
+
+.logout:hover {
+    background:
+        rgba(239, 68, 68, 0.16);
+
+    color: #ffffff;
+
+    transform:
+        translateX(3px);
+}
+
+/* =========================================================
+   MAIN CONTENT
+   ========================================================= */
+
+.main {
+    width:
+        calc(100% - 255px);
+
+    margin-left:
+        255px;
+
+    min-height: 100vh;
+
+    padding:
+        34px 35px 50px;
+}
+
+/* =========================================================
+   TOP BAR
+   ========================================================= */
+
+.topbar {
+    display: flex;
+
+    justify-content:
+        space-between;
+
+    align-items:
+        center;
+
+    margin-bottom:
+        30px;
+
+    animation:
+        contentAppear 0.7s ease both;
+}
+
+@keyframes contentAppear {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+.topbar h2 {
+    font-size: 29px;
+
+    font-weight: 700;
+
+    letter-spacing:
+        -0.5px;
+
+    color: #f2fbff;
+}
+
+.topbar p {
+    margin-top: 7px;
+
+    color: #7895a5;
+
+    font-size: 13px;
+}
+
+/* =========================================================
+   ADMIN PROFILE
+   ========================================================= */
+
+.profile-box {
+    display: flex;
+
+    align-items:
+        center;
+
+    gap: 12px;
+
+    padding:
+        8px 12px 8px 8px;
+
+    border-radius:
+        14px;
+
+    background:
+        rgba(255, 255, 255, 0.045);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.08);
+}
+
+.avatar {
+    width: 44px;
+    height: 44px;
+
+    border-radius: 13px;
+
+    display: flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #00c8ee,
+            #006da3
+        );
+
+    color: #ffffff;
+
+    font-weight: 700;
+
+    font-size: 17px;
+
+    box-shadow:
+        0 7px 20px
+        rgba(0, 180, 216, 0.18);
+}
+
+.profile-box strong {
+    display: block;
+
+    color: #e7f5fa;
+
+    font-size: 14px;
+}
+
+.profile-box span {
+    display: block;
+
+    margin-top: 2px;
+
+    color: #718d9c;
+
+    font-size: 11px;
+}
+
+/* =========================================================
+   STATISTICS
+   ========================================================= */
+
+.stats {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 19px;
+
+    margin-bottom: 35px;
+}
+
+.stat-card {
+    position: relative;
+
+    display: flex;
+
+    align-items:
+        center;
+
+    gap: 16px;
+
+    padding:
+        21px;
+
+    border-radius:
+        16px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.085),
+            rgba(255, 255, 255, 0.035)
+        );
+
+    border:
+        1px solid rgba(255, 255, 255, 0.10);
+
+    box-shadow:
+        0 12px 35px
+        rgba(0, 0, 0, 0.18);
+
+    backdrop-filter:
+        blur(18px);
+
+    -webkit-backdrop-filter:
+        blur(18px);
+
+    overflow: hidden;
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+
+    animation:
+        cardAppear 0.7s ease both;
+}
+
+.stat-card:nth-child(1) {
+    animation-delay:
+        0.05s;
+}
+
+.stat-card:nth-child(2) {
+    animation-delay:
+        0.12s;
+}
+
+.stat-card:nth-child(3) {
+    animation-delay:
+        0.19s;
+}
+
+@keyframes cardAppear {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+.stat-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #00d4ff,
+            #0077b6,
+            transparent
+        );
+
+    opacity: 0.7;
+}
+
+.stat-card:hover {
+    transform:
+        translateY(-5px);
+
+    border-color:
+        rgba(0, 212, 255, 0.20);
+
+    box-shadow:
+        0 18px 40px
+        rgba(0, 0, 0, 0.25);
+}
+
+.stat-icon {
+    width: 52px;
+    height: 52px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    border-radius:
+        14px;
+
+    background:
+        rgba(0, 180, 216, 0.10);
+
+    border:
+        1px solid rgba(0, 212, 255, 0.12);
+
+    font-size: 21px;
+}
+
+.stat-card h3 {
+    color: #f3fbff;
+
+    font-size: 25px;
+
+    margin-bottom:
+        3px;
+}
+
+.stat-card p {
+    color: #7895a5;
+
+    font-size: 12px;
+}
+
+/* =========================================================
+   SUBJECT SECTION
+   ========================================================= */
+
+.section-header {
+    display: flex;
+
+    justify-content:
+        space-between;
+
+    align-items:
+        center;
+
+    margin-bottom:
+        18px;
+}
+
+.section-header h2 {
+    color: #edf9fd;
+
+    font-size: 21px;
+
+    font-weight: 650;
+}
+
+.section-header p {
+    color: #7895a5;
+
+    font-size: 13px;
+
+    margin-top: 5px;
+}
+
+/* =========================================================
+   SUBJECT GRID
+   ========================================================= */
+
+.subject-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 19px;
+}
+
+/* =========================================================
+   SUBJECT CARD
+   ========================================================= */
+
+.subject-card {
+    position: relative;
+
+    padding:
+        23px;
+
+    border-radius:
+        17px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.09),
+            rgba(255, 255, 255, 0.035)
+        );
+
+    border:
+        1px solid rgba(255, 255, 255, 0.10);
+
+    box-shadow:
+        0 12px 32px
+        rgba(0, 0, 0, 0.18);
+
+    backdrop-filter:
+        blur(16px);
+
+    -webkit-backdrop-filter:
+        blur(16px);
+
+    overflow: hidden;
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+
+    animation:
+        subjectAppear 0.65s ease both;
+}
+
+@keyframes subjectAppear {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(20px)
+            scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+/* Top accent */
+
+.subject-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 3px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #00d4ff,
+            #0077b6
+        );
+
+    opacity: 0.85;
+}
+
+/* Glow */
+
+.subject-card::after {
+    content: "";
+
+    position: absolute;
+
+    width: 130px;
+    height: 130px;
+
+    right: -70px;
+    top: -70px;
+
+    border-radius:
+        50%;
+
+    background:
+        rgba(0, 212, 255, 0.06);
+
+    filter:
+        blur(20px);
+
+    pointer-events:
+        none;
+}
+
+.subject-card:hover {
+    transform:
+        translateY(-7px);
+
+    border-color:
+        rgba(0, 212, 255, 0.20);
+
+    box-shadow:
+        0 20px 45px
+        rgba(0, 0, 0, 0.28);
+}
+
+/* =========================================================
+   SUBJECT TOP
+   ========================================================= */
+
+.subject-top {
+    display: flex;
+
+    justify-content:
+        space-between;
+
+    align-items:
+        center;
+
+    margin-bottom:
+        19px;
+}
+
+.subject-icon {
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    border-radius:
+        13px;
+
+    background:
+        rgba(0, 180, 216, 0.10);
+
+    border:
+        1px solid rgba(0, 212, 255, 0.12);
+
+    font-size: 21px;
+
+    transition:
+        transform 0.3s ease;
+}
+
+.subject-card:hover .subject-icon {
+    transform:
+        rotate(-5deg)
+        scale(1.06);
+}
+
+.subject-code {
+    padding:
+        6px 10px;
+
+    border-radius:
+        7px;
+
+    background:
+        rgba(0, 212, 255, 0.08);
+
+    border:
+        1px solid rgba(0, 212, 255, 0.12);
+
+    color:
+        #55ddfa;
+
+    font-size:
+        10px;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        0.5px;
+}
+
+/* =========================================================
+   SUBJECT TEXT
+   ========================================================= */
+
+.subject-card h3 {
+    color:
+        #eefaff;
+
+    font-size:
+        17px;
+
+    font-weight:
+        650;
+
+    margin-bottom:
+        8px;
+
+    line-height:
+        1.3;
+}
+
+.subject-card p {
+    color:
+        #7895a5;
+
+    font-size:
+        13px;
+
+    min-height:
+        38px;
+
+    line-height:
+        1.5;
+}
+
+/* =========================================================
+   MANAGE BUTTON
+   ========================================================= */
+
+.manage-btn {
+    width:
+        100%;
+
+    margin-top:
+        20px;
+
+    padding:
+        11px 13px;
+
+    border:
+        1px solid rgba(0, 212, 255, 0.12);
+
+    border-radius:
+        9px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #00a8cc,
+            #006fa5
+        );
+
+    color:
+        #ffffff;
+
+    font-size:
+        13px;
+
+    font-weight:
+        650;
+
+    cursor:
+        pointer;
+
+    transition:
+        transform 0.22s ease,
+        box-shadow 0.22s ease,
+        filter 0.22s ease;
+}
+
+.manage-btn:hover {
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 9px 23px
+        rgba(0, 180, 216, 0.25);
+
+    filter:
+        brightness(1.08);
+}
+
+.manage-btn:active {
+    transform:
+        translateY(0)
+        scale(0.985);
+}
+
+/* =========================================================
+   LOADING
+   ========================================================= */
+
+.loading {
+    grid-column:
+        1 / -1;
+
+    padding:
+        45px 20px;
+
+    border-radius:
+        16px;
+
+    text-align:
+        center;
+
+    color:
+        #7895a5;
+
+    background:
+        rgba(255, 255, 255, 0.055);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.08);
+
+    animation:
+        pulseLoading 1.7s ease-in-out infinite;
+}
+
+@keyframes pulseLoading {
+
+    0%,
+    100% {
+        opacity: 0.65;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+/* =========================================================
+   ERROR
+   ========================================================= */
+
+.error {
+    grid-column:
+        1 / -1;
+
+    padding:
+        20px;
+
+    border-radius:
+        13px;
+
+    text-align:
+        center;
+
+    background:
+        rgba(239, 68, 68, 0.08);
+
+    border:
+        1px solid rgba(239, 68, 68, 0.15);
+
+    color:
+        #fca5a5;
+
+    font-size:
+        14px;
+}
+
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
+
+::-webkit-scrollbar {
+    width:
+        8px;
+}
+
+::-webkit-scrollbar-track {
+    background:
+        #06101c;
+}
+
+::-webkit-scrollbar-thumb {
+    background:
+        linear-gradient(
+            180deg,
+            #008db8,
+            #005779
+        );
+
+    border-radius:
+        10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background:
+        #00a9d4;
+}
+
+/* =========================================================
+   RESPONSIVE — 1100px
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+    .subject-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .stats {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* =========================================================
+   RESPONSIVE — 800px
+   ========================================================= */
+
+@media (max-width: 800px) {
+
+    .sidebar {
+        width:
+            220px;
+    }
+
+    .main {
+        width:
+            calc(100% - 220px);
+
+        margin-left:
+            220px;
+
+        padding:
+            28px 22px 40px;
+    }
+
+    .subject-grid {
+        grid-template-columns:
+            1fr;
+    }
+}
+
+/* =========================================================
+   MOBILE — 700px
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .sidebar {
+        width:
+            68px;
+
+        padding:
+            15px 8px;
+    }
+
+    .logo {
+        padding:
+            8px 5px 20px;
+
+        text-align:
+            center;
+    }
+
+    .logo h1 {
+        font-size:
+            0;
+    }
+
+    .logo h1::after {
+        content:
+            "PJ";
+
+        font-size:
+            19px;
+
+        font-weight:
+            800;
+
+        background:
+            linear-gradient(
+                135deg,
+                #ffffff,
+                #55ddff
+            );
+
+        -webkit-background-clip:
+            text;
+
+        background-clip:
+            text;
+
+        -webkit-text-fill-color:
+            transparent;
+    }
+
+    .logo p,
+    .admin-badge,
+    .navigation h4 {
+        display:
+            none;
+    }
+
+    .navigation {
+        margin-top:
+            20px;
+    }
+
+    .nav-item {
+        padding:
+            13px 5px;
+
+        text-align:
+            center;
+
+        font-size:
+            0;
+    }
+
+    .nav-item::first-letter {
+        font-size:
+            18px;
+    }
+
+    .logout {
+        margin-top:
+            auto;
+    }
+
+    .main {
+        width:
+            calc(100% - 68px);
+
+        margin-left:
+            68px;
+
+        padding:
+            22px 15px 35px;
+    }
+
+    .topbar {
+        align-items:
+            flex-start;
+    }
+
+    .topbar h2 {
+        font-size:
+            23px;
+    }
+
+    .topbar p {
+        max-width:
+            400px;
+
+        font-size:
+            12px;
+    }
+
+    .profile-box {
+        display:
+            none;
+    }
+
+    .stats {
+        grid-template-columns:
+            1fr;
+
+        gap:
+            13px;
+    }
+
+    .stat-card {
+        padding:
+            18px;
+    }
+
+    .section-header h2 {
+        font-size:
+            19px;
+    }
+
+    .section-header p {
+        font-size:
+            12px;
+    }
+}
+
+/* =========================================================
+   SMALL MOBILE — 420px
+   ========================================================= */
+
+@media (max-width: 420px) {
+
+    .sidebar {
+        width:
+            60px;
+    }
+
+    .main {
+        width:
+            calc(100% - 60px);
+
+        margin-left:
+            60px;
+
+        padding:
+            20px 11px 30px;
+    }
+
+    .topbar h2 {
+        font-size:
+            21px;
+    }
+
+    .subject-card {
+        padding:
+            19px;
+    }
+
+    .subject-card h3 {
+        font-size:
+            16px;
+    }
+
+    .stat-card h3 {
+        font-size:
+            22px;
+    }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration:
+            0.01ms !important;
+
+        animation-iteration-count:
+            1 !important;
+
+        transition-duration:
+            0.01ms !important;
+
+        scroll-behavior:
+            auto !important;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- =========================
+         SIDEBAR
+    ========================== -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <h1>PROJECT JAVA</h1>
+            <p>Examination Management</p>
+        </div>
+
+        <div class="admin-badge">
+            🛡️ Administrator
+        </div>
+
+        <nav class="navigation">
+
+            <h4>Menu</h4>
+
+            <button class="nav-item active">
+                🏠 &nbsp; Dashboard
+            </button>
+
+           
+
+           <button
+    class="nav-item"
+    type="button"
+    onclick="window.location.href='admin-results.html'"
+>
+    📊 &nbsp; Results
+</button>
+
+<button
+    class="nav-item"
+    type="button"
+    onclick="window.location.href='admin-management.html'"
+>
+    🔑 &nbsp; Admin Management
+</button>
+
+        </nav>
+
+        <button
+            class="nav-item logout"
+            id="logoutBtn"
+        >
+            🚪 &nbsp; Logout
+        </button>
+
+    </aside>
+
+
+    <!-- =========================
+         MAIN
+    ========================== -->
+
+    <main class="main">
+
+        <div class="topbar">
+
+            <div>
+                <h2>Admin Dashboard</h2>
+
+                <p>
+                    Manage your examinations and subjects
+                    from one place.
+                </p>
+            </div>
+
+            <div class="profile-box">
+
+                <div class="avatar" id="adminAvatar">
+                    A
+                </div>
+
+                <div>
+                    <strong id="adminName">
+                        Administrator
+                    </strong>
+
+                    <span>
+                        Project Java Admin
+                    </span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             STATISTICS
+        ========================== -->
+
+        <section class="stats">
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    📚
+                </div>
+
+                <div>
+                    <h3 id="subjectCount">
+                        0
+                    </h3>
+
+                    <p>
+                        Assigned Subjects
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    📝
+                </div>
+
+                <div>
+                    <h3>
+                        0
+                    </h3>
+
+                    <p>
+                        Total Exams
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    ❓
+                </div>
+
+                <div>
+                    <h3>
+                        0
+                    </h3>
+
+                    <p>
+                        Total Questions
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             SUBJECTS
+        ========================== -->
+
+        <section>
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>
+                        Your Subjects
+                    </h2>
+
+                    <p>
+                        Select a subject to manage its examinations.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="adminSubjectGrid"
+                class="subject-grid"
+            >
+
+                <div class="loading">
+                    Loading subjects...
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script>
+
+    // ================================
+    // LOAD ADMIN INFORMATION
+    // ================================
+
+    async function loadAdminDashboard() {
+
+        try {
+
+            const response =
+                await fetch("/api/me");
+
+            const data =
+                await response.json();
+
+
+            if (!data.success) {
+
+                window.location.href =
+                    "index.html";
+
+                return;
+            }
+
+
+            if (data.user.role !== "admin") {
+
+                window.location.href =
+                    "index.html";
+
+                return;
+            }
+
+
+            const adminName =
+                data.user.fullName;
+
+
+            document.getElementById(
+                "adminName"
+            ).textContent =
+                adminName;
+
+
+            document.getElementById(
+                "adminAvatar"
+            ).textContent =
+                adminName
+                    .charAt(0)
+                    .toUpperCase();
+
+
+            loadAdminSubjects();
+
+
+        } catch (error) {
+
+            console.error(
+                "Admin dashboard error:",
+                error
+            );
+
+            window.location.href =
+                "index.html";
+        }
+    }
+
+
+
+    // ================================
+    // LOAD ADMIN SUBJECTS
+    // ================================
+
+    async function loadAdminSubjects() {
+
+        const subjectGrid =
+            document.getElementById(
+                "adminSubjectGrid"
+            );
+
+
+        try {
+
+            const response =
+                await fetch(
+                    "/api/admin-subjects"
+                );
+
+
+            const data =
+                await response.json();
+
+
+            console.log(
+                "ADMIN SUBJECTS:",
+                data
+            );
+
+
+            if (!response.ok ||
+                !data.success) {
+
+                subjectGrid.innerHTML =
+                    `
+                    <div class="error">
+                        Unable to load subjects.
+                    </div>
+                    `;
+
+                return;
+            }
+
+
+            if (!data.subjects ||
+                data.subjects.length === 0) {
+
+                subjectGrid.innerHTML =
+                    `
+                    <div class="error">
+                        No subjects assigned to this admin.
+                    </div>
+                    `;
+
+                return;
+            }
+
+
+            document.getElementById(
+                "subjectCount"
+            ).textContent =
+                data.subjects.length;
+
+
+            subjectGrid.innerHTML = "";
+
+
+            data.subjects.forEach(
+                function(subject) {
+
+                    const card =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    card.className =
+                        "subject-card";
+
+
+                    card.innerHTML = `
+
+                        <div class="subject-top">
+
+                            <div class="subject-icon">
+                                📘
+                            </div>
+
+                            <span
+                                class="subject-code"
+                            >
+                                ${subject.subject_code}
+                            </span>
+
+                        </div>
+
+                        <h3>
+                            ${subject.subject_name}
+                        </h3>
+
+                        <p>
+                            Manage exams and questions
+                            for this subject.
+                        </p>
+
+                        <button
+                            class="manage-btn"
+                            onclick="manageSubject(${subject.id})"
+                        >
+                            Manage Exams →
+                        </button>
+
+                    `;
+
+
+                    subjectGrid.appendChild(
+                        card
+                    );
+
+                }
+            );
+
+
+        } catch (error) {
+
+            console.error(
+                "Subject loading error:",
+                error
+            );
+
+
+            subjectGrid.innerHTML =
+                `
+                <div class="error">
+                    Unable to connect to the server.
+                </div>
+                `;
+        }
+    }
+
+
+
+    // ================================
+    // SUBJECT MANAGEMENT
+    // ================================
+
+    function manageSubject(subjectId) {
+    window.location.href =
+        `admin-exams.html?subjectId=${subjectId}`;
+}
+
+
+    // ================================
+    // LOGOUT
+    // ================================
+
+    document.getElementById(
+        "logoutBtn"
+    ).addEventListener(
+        "click",
+        async function() {
+
+            try {
+
+                await fetch(
+                    "/api/logout",
+                    {
+                        method: "POST"
+                    }
+                );
+
+            } catch (error) {
+
+                console.error(
+                    "Logout error:",
+                    error
+                );
+
+            }
+
+            window.location.href =
+                "index.html";
+
+        }
+    );
+
+
+    // START DASHBOARD
+
+    loadAdminDashboard();
+
+</script>
+
+</body>
+</html>

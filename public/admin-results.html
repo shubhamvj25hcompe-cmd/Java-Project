@@ -1,0 +1,2281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Admin Results - Project Java</title>
+
+   <style>
+
+/* =========================================================
+   PROJECT JAVA
+   ADMIN RESULTS — PROFESSIONAL GLASS UI
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+
+    font-family:
+        "Segoe UI",
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    color: #e9f8ff;
+
+    background:
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(0, 212, 255, 0.13),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 90% 85%,
+            rgba(0, 119, 182, 0.15),
+            transparent 32%
+        ),
+        linear-gradient(
+            135deg,
+            #050b14 0%,
+            #08111f 45%,
+            #0b2035 100%
+        );
+
+    background-size:
+        180% 180%;
+
+    animation:
+        backgroundMove 18s ease infinite;
+
+    overflow-x: hidden;
+}
+
+/* =========================================================
+   BACKGROUND
+   ========================================================= */
+
+body::before,
+body::after {
+    content: "";
+
+    position: fixed;
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    z-index: -1;
+
+    filter: blur(30px);
+}
+
+body::before {
+    width: 330px;
+    height: 330px;
+
+    top: -150px;
+    left: -100px;
+
+    background:
+        rgba(0, 212, 255, 0.10);
+
+    animation:
+        floatingGlow 9s ease-in-out infinite;
+}
+
+body::after {
+    width: 360px;
+    height: 360px;
+
+    right: -150px;
+    bottom: -150px;
+
+    background:
+        rgba(0, 119, 182, 0.12);
+
+    animation:
+        floatingGlowReverse 11s ease-in-out infinite;
+}
+
+@keyframes backgroundMove {
+
+    0% {
+        background-position:
+            0% 50%;
+    }
+
+    50% {
+        background-position:
+            100% 50%;
+    }
+
+    100% {
+        background-position:
+            0% 50%;
+    }
+}
+
+@keyframes floatingGlow {
+
+    0%,
+    100% {
+        transform:
+            translate(0, 0)
+            scale(1);
+    }
+
+    50% {
+        transform:
+            translate(35px, 25px)
+            scale(1.08);
+    }
+}
+
+@keyframes floatingGlowReverse {
+
+    0%,
+    100% {
+        transform:
+            translate(0, 0)
+            scale(1);
+    }
+
+    50% {
+        transform:
+            translate(-35px, -25px)
+            scale(1.08);
+    }
+}
+
+/* =========================================================
+   TOP BAR
+   ========================================================= */
+
+.topbar {
+    position: sticky;
+
+    top: 0;
+
+    z-index: 100;
+
+    min-height: 76px;
+
+    padding:
+        15px 30px;
+
+    display: flex;
+
+    justify-content:
+        space-between;
+
+    align-items:
+        center;
+
+    background:
+        rgba(5, 15, 28, 0.88);
+
+    border-bottom:
+        1px solid rgba(255, 255, 255, 0.08);
+
+    backdrop-filter:
+        blur(20px);
+
+    -webkit-backdrop-filter:
+        blur(20px);
+
+    box-shadow:
+        0 10px 35px
+        rgba(0, 0, 0, 0.18);
+}
+
+.topbar h1 {
+    font-size: 23px;
+
+    font-weight: 700;
+
+    letter-spacing:
+        -0.3px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #58ddff
+        );
+
+    -webkit-background-clip:
+        text;
+
+    background-clip:
+        text;
+
+    -webkit-text-fill-color:
+        transparent;
+}
+
+/* =========================================================
+   DASHBOARD BUTTON
+   ========================================================= */
+
+.back-btn {
+    border:
+        1px solid rgba(0, 212, 255, 0.14);
+
+    padding:
+        10px 17px;
+
+    border-radius:
+        9px;
+
+    background:
+        rgba(0, 180, 216, 0.09);
+
+    color:
+        #a9eafa;
+
+    font-family:
+        inherit;
+
+    font-size:
+        13px;
+
+    font-weight:
+        600;
+
+    cursor:
+        pointer;
+
+    transition:
+        transform 0.22s ease,
+        background 0.22s ease,
+        box-shadow 0.22s ease,
+        color 0.22s ease;
+}
+
+.back-btn:hover {
+    background:
+        rgba(0, 180, 216, 0.18);
+
+    color:
+        #ffffff;
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 8px 22px
+        rgba(0, 180, 216, 0.15);
+}
+
+.back-btn:active {
+    transform:
+        translateY(0)
+        scale(0.98);
+}
+
+/* =========================================================
+   MAIN CONTAINER
+   ========================================================= */
+
+.container {
+    width:
+        92%;
+
+    max-width:
+        1150px;
+
+    margin:
+        30px auto 60px;
+
+    animation:
+        pageAppear 0.7s ease both;
+}
+
+@keyframes pageAppear {
+
+    from {
+        opacity:
+            0;
+
+        transform:
+            translateY(25px);
+    }
+
+    to {
+        opacity:
+            1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+/* =========================================================
+   SECTIONS
+   ========================================================= */
+
+.section {
+    position:
+        relative;
+
+    padding:
+        26px;
+
+    margin-bottom:
+        22px;
+
+    border-radius:
+        18px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.085),
+            rgba(255, 255, 255, 0.035)
+        );
+
+    border:
+        1px solid rgba(255, 255, 255, 0.10);
+
+    box-shadow:
+        0 15px 40px
+        rgba(0, 0, 0, 0.20);
+
+    backdrop-filter:
+        blur(18px);
+
+    -webkit-backdrop-filter:
+        blur(18px);
+
+    overflow:
+        hidden;
+}
+
+/* Top accent */
+
+.section::before {
+    content:
+        "";
+
+    position:
+        absolute;
+
+    top:
+        0;
+
+    left:
+        7%;
+
+    width:
+        86%;
+
+    height:
+        2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #00d4ff,
+            #0077b6,
+            transparent
+        );
+
+    opacity:
+        0.65;
+}
+
+.section h2 {
+    color:
+        #effaff;
+
+    font-size:
+        21px;
+
+    font-weight:
+        650;
+
+    margin-bottom:
+        7px;
+}
+
+.section-description {
+    color:
+        #7895a5;
+
+    margin-bottom:
+        21px;
+
+    font-size:
+        13px;
+
+    line-height:
+        1.5;
+}
+
+/* =========================================================
+   HIDDEN
+   ========================================================= */
+
+.hidden {
+    display:
+        none !important;
+}
+
+/* =========================================================
+   SMALL BACK BUTTONS
+   ========================================================= */
+
+.back-small {
+    border:
+        1px solid rgba(0, 212, 255, 0.12);
+
+    padding:
+        9px 14px;
+
+    margin-bottom:
+        20px;
+
+    border-radius:
+        8px;
+
+    background:
+        rgba(0, 180, 216, 0.08);
+
+    color:
+        #9eddea;
+
+    font-family:
+        inherit;
+
+    font-size:
+        12px;
+
+    font-weight:
+        600;
+
+    cursor:
+        pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.back-small:hover {
+    background:
+        rgba(0, 180, 216, 0.17);
+
+    color:
+        #ffffff;
+
+    transform:
+        translateX(-2px);
+}
+
+/* =========================================================
+   SUBJECT GRID
+   ========================================================= */
+
+.grid {
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap:
+        17px;
+}
+
+/* =========================================================
+   SUBJECT CARD
+   ========================================================= */
+
+.card {
+    position:
+        relative;
+
+    padding:
+        22px;
+
+    min-height:
+        115px;
+
+    border-radius:
+        14px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.075),
+            rgba(255, 255, 255, 0.025)
+        );
+
+    border:
+        1px solid rgba(255, 255, 255, 0.09);
+
+    cursor:
+        pointer;
+
+    overflow:
+        hidden;
+
+    transition:
+        transform 0.28s ease,
+        border-color 0.28s ease,
+        box-shadow 0.28s ease,
+        background 0.28s ease;
+
+    animation:
+        cardAppear 0.6s ease both;
+}
+
+@keyframes cardAppear {
+
+    from {
+        opacity:
+            0;
+
+        transform:
+            translateY(15px)
+            scale(0.98);
+    }
+
+    to {
+        opacity:
+            1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+.card::before {
+    content:
+        "";
+
+    position:
+        absolute;
+
+    top:
+        0;
+
+    left:
+        0;
+
+    width:
+        100%;
+
+    height:
+        3px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #00d4ff,
+            #0077b6
+        );
+}
+
+.card::after {
+    content:
+        "";
+
+    position:
+        absolute;
+
+    width:
+        120px;
+
+    height:
+        120px;
+
+    right:
+        -70px;
+
+    top:
+        -70px;
+
+    border-radius:
+        50%;
+
+    background:
+        rgba(0, 212, 255, 0.06);
+
+    filter:
+        blur(18px);
+}
+
+.card:hover {
+    transform:
+        translateY(-6px);
+
+    border-color:
+        rgba(0, 212, 255, 0.20);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(0, 212, 255, 0.09),
+            rgba(255, 255, 255, 0.035)
+        );
+
+    box-shadow:
+        0 18px 40px
+        rgba(0, 0, 0, 0.25);
+}
+
+.subject-code {
+    margin-bottom:
+        9px;
+
+    color:
+        #4dd9f5;
+
+    font-size:
+        11px;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        0.8px;
+}
+
+.subject-name {
+    color:
+        #eefaff;
+
+    font-size:
+        17px;
+
+    font-weight:
+        650;
+
+    line-height:
+        1.35;
+}
+
+/* =========================================================
+   EXAM CARDS
+   ========================================================= */
+
+.exam-card {
+    position:
+        relative;
+
+    padding:
+        19px 20px;
+
+    margin-bottom:
+        13px;
+
+    border-radius:
+        13px;
+
+    background:
+        rgba(255, 255, 255, 0.045);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.09);
+
+    cursor:
+        pointer;
+
+    overflow:
+        hidden;
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.exam-card::before {
+    content:
+        "";
+
+    position:
+        absolute;
+
+    left:
+        0;
+
+    top:
+        0;
+
+    bottom:
+        0;
+
+    width:
+        3px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #00d4ff,
+            #0077b6
+        );
+
+    opacity:
+        0.8;
+}
+
+.exam-card:hover {
+    background:
+        rgba(0, 180, 216, 0.07);
+
+    border-color:
+        rgba(0, 212, 255, 0.18);
+
+    transform:
+        translateX(5px);
+
+    box-shadow:
+        0 10px 28px
+        rgba(0, 0, 0, 0.18);
+}
+
+.exam-title {
+    color:
+        #eefaff;
+
+    font-size:
+        17px;
+
+    font-weight:
+        650;
+
+    margin-bottom:
+        8px;
+}
+
+.exam-details {
+    color:
+        #7895a5;
+
+    font-size:
+        12px;
+
+    line-height:
+        1.6;
+}
+
+/* =========================================================
+   BATCH GRID
+   ========================================================= */
+
+.batch-grid {
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap:
+        17px;
+}
+
+/* =========================================================
+   BATCH CARDS
+   ========================================================= */
+
+.batch-card {
+    position:
+        relative;
+
+    padding:
+        30px;
+
+    text-align:
+        center;
+
+    border-radius:
+        15px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.07),
+            rgba(255, 255, 255, 0.025)
+        );
+
+    border:
+        1px solid rgba(255, 255, 255, 0.10);
+
+    color:
+        #dff8ff;
+
+    cursor:
+        pointer;
+
+    font-size:
+        23px;
+
+    font-weight:
+        700;
+
+    transition:
+        transform 0.27s ease,
+        border-color 0.27s ease,
+        background 0.27s ease,
+        box-shadow 0.27s ease;
+}
+
+.batch-card::before {
+    content:
+        "BATCH";
+
+    display:
+        block;
+
+    margin-bottom:
+        8px;
+
+    color:
+        #6c8b9b;
+
+    font-size:
+        9px;
+
+    font-weight:
+        600;
+
+    letter-spacing:
+        1.5px;
+}
+
+.batch-card:hover {
+    border-color:
+        rgba(0, 212, 255, 0.28);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(0, 180, 216, 0.13),
+            rgba(0, 119, 182, 0.06)
+        );
+
+    transform:
+        translateY(-6px);
+
+    box-shadow:
+        0 18px 38px
+        rgba(0, 0, 0, 0.23);
+}
+
+/* =========================================================
+   EXAM HEADER
+   ========================================================= */
+
+.exam-header {
+    position:
+        relative;
+
+    padding:
+        18px 20px;
+
+    margin-bottom:
+        20px;
+
+    border-radius:
+        12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0, 180, 216, 0.10),
+            rgba(0, 119, 182, 0.05)
+        );
+
+    border:
+        1px solid rgba(0, 212, 255, 0.14);
+
+    color:
+        #9bc3d0;
+
+    font-size:
+        13px;
+
+    line-height:
+        1.9;
+}
+
+.exam-header strong {
+    color:
+        #eefaff;
+
+    font-size:
+        16px;
+}
+
+/* =========================================================
+   LOADING
+   ========================================================= */
+
+.loading {
+    padding:
+        30px 10px;
+
+    color:
+        #7895a5;
+
+    text-align:
+        center;
+
+    font-size:
+        13px;
+
+    animation:
+        loadingPulse 1.6s ease-in-out infinite;
+}
+
+@keyframes loadingPulse {
+
+    0%,
+    100% {
+        opacity:
+            0.55;
+    }
+
+    50% {
+        opacity:
+            1;
+    }
+}
+
+/* =========================================================
+   MESSAGE
+   ========================================================= */
+
+.message {
+    padding:
+        15px 17px;
+
+    border-radius:
+        11px;
+
+    background:
+        rgba(234, 179, 8, 0.08);
+
+    border:
+        1px solid rgba(234, 179, 8, 0.15);
+
+    color:
+        #e7c873;
+
+    font-size:
+        13px;
+
+    line-height:
+        1.5;
+}
+
+/* =========================================================
+   TABLE
+   ========================================================= */
+
+.table-container {
+    width:
+        100%;
+
+    overflow-x:
+        auto;
+
+    border-radius:
+        13px;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.08);
+}
+
+table {
+    width:
+        100%;
+
+    min-width:
+        650px;
+
+    border-collapse:
+        collapse;
+
+    background:
+        rgba(255, 255, 255, 0.025);
+}
+
+th {
+    padding:
+        14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #071725,
+            #0b263c
+        );
+
+    color:
+        #b9edf9;
+
+    border-bottom:
+        1px solid rgba(0, 212, 255, 0.12);
+
+    text-align:
+        left;
+
+    font-size:
+        12px;
+
+    font-weight:
+        650;
+
+    letter-spacing:
+        0.2px;
+}
+
+td {
+    padding:
+        14px;
+
+    color:
+        #b5cbd5;
+
+    border-bottom:
+        1px solid rgba(255, 255, 255, 0.06);
+
+    font-size:
+        13px;
+}
+
+tbody tr {
+    transition:
+        background 0.2s ease;
+}
+
+tbody tr:hover {
+    background:
+        rgba(0, 180, 216, 0.055);
+}
+
+tbody tr:last-child td {
+    border-bottom:
+        none;
+}
+
+/* =========================================================
+   ATTENDANCE
+   ========================================================= */
+
+.attended {
+    display:
+        inline-block;
+
+    padding:
+        5px 9px;
+
+    border-radius:
+        6px;
+
+    background:
+        rgba(34, 197, 94, 0.09);
+
+    border:
+        1px solid rgba(34, 197, 94, 0.14);
+
+    color:
+        #73e39a;
+
+    font-size:
+        11px;
+
+    font-weight:
+        700;
+}
+
+.not-attended {
+    display:
+        inline-block;
+
+    padding:
+        5px 9px;
+
+    border-radius:
+        6px;
+
+    background:
+        rgba(239, 68, 68, 0.08);
+
+    border:
+        1px solid rgba(239, 68, 68, 0.13);
+
+    color:
+        #f39a9a;
+
+    font-size:
+        11px;
+
+    font-weight:
+        700;
+}
+
+.marks {
+    color:
+        #55ddfa;
+
+    font-weight:
+        700;
+}
+
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
+
+::-webkit-scrollbar {
+    width:
+        8px;
+
+    height:
+        8px;
+}
+
+::-webkit-scrollbar-track {
+    background:
+        #06101c;
+}
+
+::-webkit-scrollbar-thumb {
+    background:
+        linear-gradient(
+            180deg,
+            #008db8,
+            #005779
+        );
+
+    border-radius:
+        10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background:
+        #00a9d4;
+}
+
+/* =========================================================
+   RESPONSIVE — 900px
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .batch-grid {
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+    }
+}
+
+/* =========================================================
+   RESPONSIVE — 700px
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .topbar {
+        padding:
+            14px 18px;
+    }
+
+    .topbar h1 {
+        font-size:
+            18px;
+    }
+
+    .back-btn {
+        padding:
+            9px 12px;
+
+        font-size:
+            11px;
+    }
+
+    .container {
+        width:
+            94%;
+
+        margin-top:
+            22px;
+    }
+
+    .section {
+        padding:
+            20px;
+
+        border-radius:
+            15px;
+    }
+
+    .grid {
+        grid-template-columns:
+            1fr;
+    }
+
+    .batch-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+    .batch-card {
+        padding:
+            23px;
+    }
+
+    .section h2 {
+        font-size:
+            19px;
+    }
+
+    .exam-header {
+        font-size:
+            12px;
+    }
+}
+
+/* =========================================================
+   RESPONSIVE — 450px
+   ========================================================= */
+
+@media (max-width: 450px) {
+
+    .topbar {
+        min-height:
+            65px;
+
+        padding:
+            12px;
+    }
+
+    .topbar h1 {
+        max-width:
+            190px;
+
+        font-size:
+            16px;
+
+        line-height:
+            1.25;
+    }
+
+    .back-btn {
+        padding:
+            8px 9px;
+
+        font-size:
+            10px;
+    }
+
+    .container {
+        width:
+            95%;
+
+        margin:
+            18px auto 40px;
+    }
+
+    .section {
+        padding:
+            17px;
+    }
+
+    .card {
+        padding:
+            19px;
+    }
+
+    .subject-name {
+        font-size:
+            16px;
+    }
+
+    .exam-title {
+        font-size:
+            16px;
+    }
+
+    .batch-card {
+        font-size:
+            21px;
+    }
+
+    th,
+    td {
+        padding:
+            11px;
+    }
+}
+
+/* =========================================================
+   ACCESSIBILITY
+   ========================================================= */
+
+button:focus-visible,
+.card:focus-visible,
+.batch-card:focus-visible,
+.exam-card:focus-visible {
+    outline:
+        2px solid #4dd9f5;
+
+    outline-offset:
+        3px;
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration:
+            0.01ms !important;
+
+        animation-iteration-count:
+            1 !important;
+
+        transition-duration:
+            0.01ms !important;
+
+        scroll-behavior:
+            auto !important;
+    }
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+    <!-- TOP BAR -->
+
+    <div class="topbar">
+
+        <h1>
+            Project Java - Examination Results
+        </h1>
+
+        <button
+            class="back-btn"
+            type="button"
+            onclick="goDashboard()"
+        >
+            ← Admin Dashboard
+        </button>
+
+    </div>
+
+
+    <div class="container">
+
+
+        <!-- ========================================= -->
+        <!-- SUBJECT SECTION -->
+        <!-- ========================================= -->
+
+        <div
+            id="subjectSection"
+            class="section"
+        >
+
+            <h2>
+                Select Subject
+            </h2>
+
+            <p class="section-description">
+                Select a subject to view its published examinations.
+            </p>
+
+            <div
+                id="subjectsContainer"
+                class="grid"
+            >
+
+                <p class="loading">
+                    Loading subjects...
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- ========================================= -->
+        <!-- EXAM SECTION -->
+        <!-- ========================================= -->
+
+        <div
+            id="examSection"
+            class="section hidden"
+        >
+
+            <button
+                class="back-small"
+                type="button"
+                onclick="showSubjects()"
+            >
+                ← Back to Subjects
+            </button>
+
+            <h2 id="selectedSubjectTitle">
+                Select Examination
+            </h2>
+
+            <p class="section-description">
+                Only published examinations are shown.
+            </p>
+
+            <div
+                id="examsContainer"
+            >
+
+                <p class="loading">
+                    Loading examinations...
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- ========================================= -->
+        <!-- BATCH SECTION -->
+        <!-- ========================================= -->
+
+        <div
+            id="batchSection"
+            class="section hidden"
+        >
+
+            <button
+                class="back-small"
+                type="button"
+                onclick="showExams()"
+            >
+                ← Back to Exams
+            </button>
+
+            <h2 id="selectedExamTitle">
+                Select Batch
+            </h2>
+
+            <p class="section-description">
+                Select S1, S2 or S3 to view student results.
+            </p>
+
+            <div class="batch-grid">
+
+                <div
+                    class="batch-card"
+                    onclick="loadStudents('S1')"
+                >
+                    S1
+                </div>
+
+                <div
+                    class="batch-card"
+                    onclick="loadStudents('S2')"
+                >
+                    S2
+                </div>
+
+                <div
+                    class="batch-card"
+                    onclick="loadStudents('S3')"
+                >
+                    S3
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ========================================= -->
+        <!-- STUDENT RESULTS SECTION -->
+        <!-- ========================================= -->
+
+        <div
+            id="studentSection"
+            class="section hidden"
+        >
+
+            <button
+                class="back-small"
+                type="button"
+                onclick="showBatches()"
+            >
+                ← Back to Batches
+            </button>
+
+            <h2 id="studentTitle">
+                Student Results
+            </h2>
+
+            <div
+                id="examHeader"
+                class="exam-header"
+            ></div>
+
+            <div
+                id="studentsContainer"
+            >
+                <p class="loading">
+                    Loading students...
+                </p>
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+<script>
+
+
+    // =====================================================
+    // GLOBAL VARIABLES
+    // =====================================================
+
+    let selectedSubject = null;
+
+    let selectedExam = null;
+
+
+    // =====================================================
+    // ELEMENTS
+    // =====================================================
+
+    const subjectSection =
+        document.getElementById(
+            "subjectSection"
+        );
+
+    const examSection =
+        document.getElementById(
+            "examSection"
+        );
+
+    const batchSection =
+        document.getElementById(
+            "batchSection"
+        );
+
+    const studentSection =
+        document.getElementById(
+            "studentSection"
+        );
+
+
+    // =====================================================
+    // LOAD SUBJECTS
+    // =====================================================
+
+    async function loadSubjects() {
+
+        const container =
+            document.getElementById(
+                "subjectsContainer"
+            );
+
+        try {
+
+            const response =
+                await fetch(
+                    "/api/admin-results/subjects"
+                );
+
+            const data =
+                await response.json();
+
+
+            if (
+                !response.ok ||
+                !data.success
+            ) {
+
+                container.innerHTML =
+                    `
+                    <div class="message">
+                        ${data.message || "Unable to load subjects."}
+                    </div>
+                    `;
+
+                return;
+
+            }
+
+
+            if (
+                !data.subjects ||
+                data.subjects.length === 0
+            ) {
+
+                container.innerHTML =
+                    `
+                    <div class="message">
+                        No subjects assigned to this admin.
+                    </div>
+                    `;
+
+                return;
+
+            }
+
+
+            container.innerHTML = "";
+
+
+            data.subjects.forEach(
+                function(subject) {
+
+                    const card =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    card.className =
+                        "card";
+
+
+                    card.innerHTML = `
+
+                        <div class="subject-code">
+                            ${escapeHtml(subject.subject_code)}
+                        </div>
+
+                        <div class="subject-name">
+                            ${escapeHtml(subject.subject_name)}
+                        </div>
+
+                    `;
+
+
+                    card.addEventListener(
+                        "click",
+                        function() {
+
+                            selectSubject(subject);
+
+                        }
+                    );
+
+
+                    container.appendChild(card);
+
+                }
+            );
+
+        }
+
+        catch (error) {
+
+            console.error(
+                "Load subjects error:",
+                error
+            );
+
+            container.innerHTML =
+                `
+                <div class="message">
+                    Unable to connect to server.
+                </div>
+                `;
+
+        }
+
+    }
+
+
+    // =====================================================
+    // SELECT SUBJECT
+    // =====================================================
+
+    async function selectSubject(subject) {
+
+        selectedSubject =
+            subject;
+
+        document.getElementById(
+            "selectedSubjectTitle"
+        ).textContent =
+            `${subject.subject_code} - ${subject.subject_name}`;
+
+
+        subjectSection.classList.add(
+            "hidden"
+        );
+
+        examSection.classList.remove(
+            "hidden"
+        );
+
+        batchSection.classList.add(
+            "hidden"
+        );
+
+        studentSection.classList.add(
+            "hidden"
+        );
+
+
+        loadExams(subject.id);
+
+    }
+
+
+    // =====================================================
+    // LOAD PUBLISHED EXAMS
+    // =====================================================
+
+    async function loadExams(subjectId) {
+
+        const container =
+            document.getElementById(
+                "examsContainer"
+            );
+
+
+        container.innerHTML =
+            `
+            <p class="loading">
+                Loading published examinations...
+            </p>
+            `;
+
+
+        try {
+
+            const response =
+                await fetch(
+                    `/api/admin-results/exams?subjectId=${encodeURIComponent(subjectId)}`
+                );
+
+
+            const data =
+                await response.json();
+
+
+            if (
+                !response.ok ||
+                !data.success
+            ) {
+
+                container.innerHTML =
+                    `
+                    <div class="message">
+                        ${data.message || "Unable to load examinations."}
+                    </div>
+                    `;
+
+                return;
+
+            }
+
+
+            if (
+                !data.exams ||
+                data.exams.length === 0
+            ) {
+
+                container.innerHTML =
+                    `
+                    <div class="message">
+                        No published examinations are available for this subject.
+                    </div>
+                    `;
+
+                return;
+
+            }
+
+
+            container.innerHTML = "";
+
+
+            data.exams.forEach(
+                function(exam) {
+
+                    const card =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    card.className =
+                        "exam-card";
+
+
+                    card.innerHTML = `
+
+                        <div class="exam-title">
+                            ${escapeHtml(exam.exam_title)}
+                        </div>
+
+                        <div class="exam-details">
+                            ${escapeHtml(exam.subject_code)}
+                            •
+                            ${exam.duration_minutes} minutes
+                            •
+                            ${exam.total_marks} marks
+                            •
+                            ${exam.question_count} questions
+                        </div>
+
+                    `;
+
+
+                    card.addEventListener(
+                        "click",
+                        function() {
+
+                            selectExam(exam);
+
+                        }
+                    );
+
+
+                    container.appendChild(card);
+
+                }
+            );
+
+        }
+
+        catch (error) {
+
+            console.error(
+                "Load exams error:",
+                error
+            );
+
+            container.innerHTML =
+                `
+                <div class="message">
+                    Unable to connect to server.
+                </div>
+                `;
+
+        }
+
+    }
+
+
+    // =====================================================
+    // SELECT EXAM
+    // =====================================================
+
+    function selectExam(exam) {
+
+        selectedExam =
+            exam;
+
+
+        document.getElementById(
+            "selectedExamTitle"
+        ).textContent =
+            exam.exam_title;
+
+
+        examSection.classList.add(
+            "hidden"
+        );
+
+        batchSection.classList.remove(
+            "hidden"
+        );
+
+        studentSection.classList.add(
+            "hidden"
+        );
+
+    }
+
+
+    // =====================================================
+    // LOAD STUDENTS
+    // =====================================================
+
+    async function loadStudents(division) {
+
+        if (!selectedExam) {
+            return;
+        }
+
+
+        studentSection.classList.remove(
+            "hidden"
+        );
+
+
+        batchSection.classList.add(
+            "hidden"
+        );
+
+
+        document.getElementById(
+            "studentTitle"
+        ).textContent =
+            `${division} - Student Results`;
+
+
+        document.getElementById(
+            "examHeader"
+        ).innerHTML = `
+
+            <strong>
+                ${escapeHtml(selectedExam.exam_title)}
+            </strong>
+
+            <br>
+
+            Subject:
+            ${escapeHtml(selectedExam.subject_code)}
+
+            <br>
+
+            Total Marks:
+            ${selectedExam.total_marks}
+
+            <br>
+
+            Batch:
+            ${escapeHtml(division)}
+
+        `;
+
+
+        const container =
+            document.getElementById(
+                "studentsContainer"
+            );
+
+
+        container.innerHTML =
+            `
+            <p class="loading">
+                Loading students...
+            </p>
+            `;
+
+
+        try {
+
+            const response =
+                await fetch(
+                    `/api/admin-results/students?examId=${encodeURIComponent(selectedExam.id)}&division=${encodeURIComponent(division)}`
+                );
+
+
+            const data =
+                await response.json();
+
+
+            if (
+                !response.ok ||
+                !data.success
+            ) {
+
+                container.innerHTML =
+                    `
+                    <div class="message">
+                        ${data.message || "Unable to load students."}
+                    </div>
+                    `;
+
+                return;
+
+            }
+
+
+            if (
+                !data.students ||
+                data.students.length === 0
+            ) {
+
+                container.innerHTML =
+                    `
+                    <div class="message">
+                        No students found in ${escapeHtml(division)}.
+                    </div>
+                    `;
+
+                return;
+
+            }
+
+
+            let html = `
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    #
+                                </th>
+
+                                <th>
+                                    Student Name
+                                </th>
+
+                                <th>
+                                    Roll No
+                                </th>
+
+                                <th>
+                                    Marks
+                                </th>
+
+                                <th>
+                                    Attendance
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+            `;
+
+
+            data.students.forEach(
+                function(student, index) {
+
+                    const attended =
+                        Number(
+                            student.attended
+                        ) === 1;
+
+
+                    const marks =
+                        attended
+                            ? `${student.score} / ${student.total_marks || selectedExam.total_marks}`
+                            : "—";
+
+
+                    html += `
+
+                        <tr>
+
+                            <td>
+                                ${index + 1}
+                            </td>
+
+                            <td>
+                                ${escapeHtml(student.full_name)}
+                            </td>
+
+                            <td>
+                                ${escapeHtml(student.roll_number || "—")}
+                            </td>
+
+                            <td class="marks">
+                                ${marks}
+                            </td>
+
+                            <td>
+
+                                ${
+                                    attended
+
+                                    ? `<span class="attended">
+                                        Attended
+                                       </span>`
+
+                                    : `<span class="not-attended">
+                                        Not Attended
+                                       </span>`
+                                }
+
+                            </td>
+
+                        </tr>
+
+                    `;
+
+                }
+            );
+
+
+            html += `
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            `;
+
+
+            container.innerHTML =
+                html;
+
+        }
+
+        catch (error) {
+
+            console.error(
+                "Load students error:",
+                error
+            );
+
+            container.innerHTML =
+                `
+                <div class="message">
+                    Unable to connect to server.
+                </div>
+                `;
+
+        }
+
+    }
+
+
+    // =====================================================
+    // NAVIGATION
+    // =====================================================
+
+    function showSubjects() {
+
+        selectedSubject = null;
+        selectedExam = null;
+
+        subjectSection.classList.remove(
+            "hidden"
+        );
+
+        examSection.classList.add(
+            "hidden"
+        );
+
+        batchSection.classList.add(
+            "hidden"
+        );
+
+        studentSection.classList.add(
+            "hidden"
+        );
+
+    }
+
+
+    function showExams() {
+
+        selectedExam = null;
+
+        subjectSection.classList.add(
+            "hidden"
+        );
+
+        examSection.classList.remove(
+            "hidden"
+        );
+
+        batchSection.classList.add(
+            "hidden"
+        );
+
+        studentSection.classList.add(
+            "hidden"
+        );
+
+    }
+
+
+    function showBatches() {
+
+        studentSection.classList.add(
+            "hidden"
+        );
+
+        batchSection.classList.remove(
+            "hidden"
+        );
+
+    }
+
+
+    function goDashboard() {
+
+        window.location.href =
+            "admin-dashboard.html";
+
+    }
+
+
+    // =====================================================
+    // HTML ESCAPE
+    // =====================================================
+
+    function escapeHtml(value) {
+
+        if (value === null || value === undefined) {
+            return "";
+        }
+
+        return String(value)
+            .replaceAll("&", "&amp;")
+            .replaceAll("<", "&lt;")
+            .replaceAll(">", "&gt;")
+            .replaceAll('"', "&quot;")
+            .replaceAll("'", "&#039;");
+
+    }
+
+
+    // =====================================================
+    // INITIAL LOAD
+    // =====================================================
+
+    loadSubjects();
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Join as Admin - Project Java</title>
+
+    <style>
+/* =========================================================
+   PROJECT JAVA
+   JOIN AS ADMIN — PROFESSIONAL UI
+   ========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    padding: 35px 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-family:
+        Inter,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    color: #ffffff;
+
+    background:
+        radial-gradient(
+            circle at 15% 15%,
+            rgba(0, 212, 255, 0.15),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 80%,
+            rgba(0, 119, 182, 0.16),
+            transparent 32%
+        ),
+        linear-gradient(
+            135deg,
+            #050b14 0%,
+            #08111f 45%,
+            #0b2035 100%
+        );
+
+    background-size: 180% 180%;
+
+    animation:
+        backgroundMove 18s ease infinite;
+
+    overflow-x: hidden;
+}
+
+/* =========================================================
+   ANIMATED BACKGROUND
+   ========================================================= */
+
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+body::before {
+    width: 300px;
+    height: 300px;
+
+    top: -120px;
+    left: -100px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(0, 212, 255, 0.20),
+            transparent 70%
+        );
+
+    filter: blur(15px);
+
+    animation:
+        floatingBlob 9s ease-in-out infinite;
+}
+
+body::after {
+    width: 350px;
+    height: 350px;
+
+    right: -130px;
+    bottom: -140px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(0, 119, 182, 0.20),
+            transparent 70%
+        );
+
+    filter: blur(18px);
+
+    animation:
+        floatingBlobReverse 11s ease-in-out infinite;
+}
+
+@keyframes backgroundMove {
+
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes floatingBlob {
+
+    0%,
+    100% {
+        transform:
+            translate3d(0, 0, 0)
+            scale(1);
+    }
+
+    50% {
+        transform:
+            translate3d(30px, 25px, 0)
+            scale(1.08);
+    }
+}
+
+@keyframes floatingBlobReverse {
+
+    0%,
+    100% {
+        transform:
+            translate3d(0, 0, 0)
+            scale(1);
+    }
+
+    50% {
+        transform:
+            translate3d(-35px, -25px, 0)
+            scale(1.1);
+    }
+}
+
+/* =========================================================
+   MAIN CONTAINER
+   ========================================================= */
+
+.container {
+    width: 100%;
+    max-width: 600px;
+
+    position: relative;
+    z-index: 2;
+
+    animation:
+        pageAppear 0.8s ease both;
+}
+
+@keyframes pageAppear {
+
+    from {
+        opacity: 0;
+        transform:
+            translateY(35px)
+            scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+/* =========================================================
+   MAIN CARD
+   ========================================================= */
+
+.card {
+    position: relative;
+
+    width: 100%;
+
+    padding: 40px;
+
+    border-radius: 26px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.115),
+            rgba(255, 255, 255, 0.045)
+        );
+
+    border:
+        1px solid rgba(255, 255, 255, 0.15);
+
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+
+    overflow: hidden;
+}
+
+/* Top glowing line */
+
+.card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 8%;
+
+    width: 84%;
+    height: 2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #00d4ff,
+            #0077b6,
+            transparent
+        );
+
+    opacity: 0.9;
+}
+
+/* Soft decorative glow */
+
+.card::after {
+    content: "";
+
+    position: absolute;
+
+    width: 220px;
+    height: 220px;
+
+    top: -130px;
+    right: -100px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(0, 212, 255, 0.08);
+
+    filter: blur(25px);
+
+    pointer-events: none;
+}
+
+/* =========================================================
+   HEADING
+   ========================================================= */
+
+.card h1 {
+    position: relative;
+    z-index: 1;
+
+    text-align: center;
+
+    margin-bottom: 10px;
+
+    font-size: 30px;
+    font-weight: 750;
+
+    letter-spacing: -0.5px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #a9efff
+        );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+    position: relative;
+    z-index: 1;
+
+    text-align: center;
+
+    margin-bottom: 25px;
+
+    color: #9fb8c7;
+
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* =========================================================
+   KEY INFORMATION BOX
+   ========================================================= */
+
+.key-info {
+    position: relative;
+    z-index: 1;
+
+    margin-bottom: 25px;
+
+    padding: 15px 17px;
+
+    border-radius: 13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0, 212, 255, 0.09),
+            rgba(0, 119, 182, 0.05)
+        );
+
+    border:
+        1px solid rgba(0, 212, 255, 0.16);
+
+    color: #a9c5d1;
+
+    font-size: 13px;
+
+    line-height: 1.65;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+.key-info strong {
+    color: #4dd9f5;
+
+    font-weight: 700;
+}
+
+/* =========================================================
+   FORM
+   ========================================================= */
+
+#adminJoinForm {
+    position: relative;
+    z-index: 1;
+
+    display: flex;
+    flex-direction: column;
+}
+
+/* =========================================================
+   LABELS
+   ========================================================= */
+
+#adminJoinForm label {
+    margin-bottom: 8px;
+
+    color: #d9e8ef;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    transition:
+        color 0.25s ease;
+}
+
+/* =========================================================
+   INPUTS
+   ========================================================= */
+
+#adminJoinForm input {
+    width: 100%;
+
+    height: 48px;
+
+    margin-bottom: 18px;
+
+    padding:
+        0 15px;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.13);
+
+    border-radius: 11px;
+
+    outline: none;
+
+    background:
+        rgba(0, 0, 0, 0.23);
+
+    color: #ffffff;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    transition:
+        border-color 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease,
+        transform 0.2s ease;
+}
+
+#adminJoinForm input::placeholder {
+    color: #718896;
+}
+
+#adminJoinForm input:hover {
+    border-color:
+        rgba(255, 255, 255, 0.22);
+}
+
+#adminJoinForm input:focus {
+    border-color:
+        #00c8ee;
+
+    background:
+        rgba(0, 0, 0, 0.30);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(0, 200, 238, 0.10),
+
+        0 0 22px
+        rgba(0, 180, 216, 0.07);
+
+    transform:
+        translateY(-1px);
+}
+
+/* Admin Key gets special appearance */
+
+#adminKey {
+    color: #4dd9f5;
+
+    font-weight: 650;
+
+    letter-spacing: 0.7px;
+}
+
+/* =========================================================
+   CREATE BUTTON
+   ========================================================= */
+
+.join-btn {
+    width: 100%;
+
+    min-height: 50px;
+
+    margin-top: 3px;
+
+    padding:
+        14px 18px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #00c8ee,
+            #0085bd
+        );
+
+    color: #ffffff;
+
+    font-family: inherit;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.1px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 10px 28px
+        rgba(0, 180, 216, 0.22);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        filter 0.25s ease;
+}
+
+.join-btn:hover {
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 16px 35px
+        rgba(0, 180, 216, 0.34);
+
+    filter:
+        brightness(1.08);
+}
+
+.join-btn:active {
+    transform:
+        translateY(0)
+        scale(0.985);
+}
+
+.join-btn:disabled {
+    opacity: 0.65;
+
+    cursor: not-allowed;
+
+    transform: none;
+
+    box-shadow:
+        0 8px 20px
+        rgba(0, 180, 216, 0.10);
+}
+
+/* =========================================================
+   MESSAGE
+   ========================================================= */
+
+.message {
+    position: relative;
+    z-index: 1;
+
+    min-height: 22px;
+
+    margin-top: 16px;
+
+    text-align: center;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+
+    transition:
+        opacity 0.3s ease;
+}
+
+/* =========================================================
+   BACK TO LOGIN
+   ========================================================= */
+
+.back {
+    position: relative;
+    z-index: 1;
+
+    display: block;
+
+    width: fit-content;
+
+    margin:
+        22px auto 0;
+
+    color: #4dd9f5;
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.back:hover {
+    color: #9aeeff;
+
+    transform:
+        translateY(-2px);
+}
+
+.back:active {
+    transform:
+        translateY(0);
+}
+
+/* =========================================================
+   FOCUS ACCESSIBILITY
+   ========================================================= */
+
+button:focus-visible,
+input:focus-visible,
+a:focus-visible {
+    outline:
+        2px solid #4dd9f5;
+
+    outline-offset:
+        3px;
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    body {
+        padding:
+            25px 15px;
+    }
+
+    .card {
+        padding:
+            32px 25px;
+
+        border-radius:
+            22px;
+    }
+
+    .card h1 {
+        font-size:
+            27px;
+    }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 500px) {
+
+    body {
+        padding:
+            18px 12px;
+    }
+
+    .container {
+        max-width:
+            100%;
+    }
+
+    .card {
+        padding:
+            28px 20px;
+
+        border-radius:
+            20px;
+    }
+
+    .card h1 {
+        font-size:
+            24px;
+    }
+
+    .subtitle {
+        font-size:
+            13px;
+    }
+
+    .key-info {
+        font-size:
+            12px;
+
+        padding:
+            13px 14px;
+    }
+
+    #adminJoinForm input {
+        height:
+            46px;
+
+        font-size:
+            14px;
+    }
+
+    .join-btn {
+        min-height:
+            48px;
+
+        font-size:
+            14px;
+    }
+}
+
+/* =========================================================
+   SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 360px) {
+
+    .card {
+        padding:
+            24px 16px;
+    }
+
+    .card h1 {
+        font-size:
+            22px;
+    }
+
+    #adminJoinForm input {
+        height:
+            44px;
+
+        padding:
+            0 13px;
+    }
+
+    .key-info {
+        line-height:
+            1.55;
+    }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration:
+            0.01ms !important;
+
+        animation-iteration-count:
+            1 !important;
+
+        transition-duration:
+            0.01ms !important;
+
+        scroll-behavior:
+            auto !important;
+    }
+}
+
+</style>
+
+        
+      
+    
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="card">
+
+            <h1>🔑 Join as Admin</h1>
+
+            <p class="subtitle">
+                Project Java — Secondary Admin Registration
+            </p>
+
+            <div class="key-info">
+                You must receive a valid <strong>Admin Key</strong>
+                from the Main Admin before creating a Secondary Admin account.
+            </div>
+
+            <form id="adminJoinForm">
+
+                <label for="fullName">
+                    Full Name
+                </label>
+
+                <input
+                    type="text"
+                    id="fullName"
+                    placeholder="Enter your full name"
+                    required
+                >
+
+
+                <label for="email">
+                    Email Address
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Enter your email"
+                    required
+                >
+
+
+                <label for="phone">
+                    Phone Number
+                </label>
+
+                <input
+                    type="tel"
+                    id="phone"
+                    placeholder="Enter your phone number"
+                    required
+                >
+
+
+                <label for="adminKey">
+                    Admin Key
+                </label>
+
+                <input
+                    type="text"
+                    id="adminKey"
+                    placeholder="Example: JAVA-ADMIN-XXXXXXXXXXXX"
+                    required
+                >
+
+
+                <label for="password">
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Minimum 6 characters"
+                    required
+                >
+
+
+                <label for="confirmPassword">
+                    Confirm Password
+                </label>
+
+                <input
+                    type="password"
+                    id="confirmPassword"
+                    placeholder="Re-enter your password"
+                    required
+                >
+
+
+                <button
+                    type="submit"
+                    class="join-btn"
+                    id="joinButton"
+                >
+                    Create Secondary Admin Account
+                </button>
+
+            </form>
+
+
+            <div
+                id="message"
+                class="message"
+            ></div>
+
+
+            <a
+                href="index.html"
+                class="back"
+            >
+                ← Back to Login
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        // =========================================
+        // ADMIN JOIN FORM
+        // =========================================
+
+        document
+            .getElementById("adminJoinForm")
+            .addEventListener(
+                "submit",
+                async function(event) {
+
+                    event.preventDefault();
+
+
+                    const fullName =
+                        document
+                            .getElementById("fullName")
+                            .value
+                            .trim();
+
+
+                    const email =
+                        document
+                            .getElementById("email")
+                            .value
+                            .trim();
+
+
+                    const phone =
+                        document
+                            .getElementById("phone")
+                            .value
+                            .trim();
+
+
+                    const adminKey =
+                        document
+                            .getElementById("adminKey")
+                            .value
+                            .trim();
+
+
+                    const password =
+                        document
+                            .getElementById("password")
+                            .value;
+
+
+                    const confirmPassword =
+                        document
+                            .getElementById("confirmPassword")
+                            .value;
+
+
+                    const message =
+                        document
+                            .getElementById("message");
+
+
+                    const button =
+                        document
+                            .getElementById("joinButton");
+
+
+                    message.textContent = "";
+                    message.style.color = "#dc2626";
+
+
+                    // =================================
+                    // BASIC VALIDATION
+                    // =================================
+
+                    if (
+                        !fullName ||
+                        !email ||
+                        !phone ||
+                        !adminKey ||
+                        !password ||
+                        !confirmPassword
+                    ) {
+
+                        message.textContent =
+                            "Please fill in all fields.";
+
+                        return;
+
+                    }
+
+
+                    if (password.length < 6) {
+
+                        message.textContent =
+                            "Password must be at least 6 characters.";
+
+                        return;
+
+                    }
+
+
+                    if (
+                        password !== confirmPassword
+                    ) {
+
+                        message.textContent =
+                            "Passwords do not match.";
+
+                        return;
+
+                    }
+
+
+                    // =================================
+                    // DISABLE BUTTON
+                    // =================================
+
+                    button.disabled = true;
+
+                    button.textContent =
+                        "Creating Account...";
+
+
+                    try {
+
+                        const response =
+                            await fetch(
+                                "/api/admin-management/join",
+                                {
+                                    method: "POST",
+
+                                    headers: {
+                                        "Content-Type":
+                                            "application/json"
+                                    },
+
+                                    body: JSON.stringify({
+
+                                        fullName:
+                                            fullName,
+
+                                        email:
+                                            email,
+
+                                        phone:
+                                            phone,
+
+                                        adminKey:
+                                            adminKey,
+
+                                        password:
+                                            password,
+
+                                        confirmPassword:
+                                            confirmPassword
+
+                                    })
+                                }
+                            );
+
+
+                        const data =
+                            await response.json();
+
+
+                        if (!data.success) {
+
+                            message.style.color =
+                                "#dc2626";
+
+                            message.textContent =
+                                data.message ||
+                                "Unable to create admin account.";
+
+                            button.disabled = false;
+
+                            button.textContent =
+                                "Create Secondary Admin Account";
+
+                            return;
+
+                        }
+
+
+                        message.style.color =
+                            "#15803d";
+
+                        message.textContent =
+                            "Secondary Admin account created successfully! Redirecting to login...";
+
+
+                        setTimeout(
+                            function() {
+
+                                window.location.href =
+                                    "index.html";
+
+                            },
+                            2000
+                        );
+
+
+                    }
+                    catch (error) {
+
+                        console.error(error);
+
+                        message.style.color =
+                            "#dc2626";
+
+                        message.textContent =
+                            "Unable to connect to the server.";
+
+                        button.disabled = false;
+
+                        button.textContent =
+                            "Create Secondary Admin Account";
+
+                    }
+
+                }
+            );
+
+    </script>
+
+</body>
+</html>

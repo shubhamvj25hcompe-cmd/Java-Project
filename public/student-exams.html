@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Available Exams | Project Java</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+</head>
+
+<body>
+
+    <!-- BACKGROUND -->
+
+    <div class="background">
+
+        <div class="wave wave1"></div>
+        <div class="wave wave2"></div>
+        <div class="wave wave3"></div>
+
+        <div class="circle circle1"></div>
+        <div class="circle circle2"></div>
+        <div class="circle circle3"></div>
+
+    </div>
+
+
+    <!-- EXAMS PAGE -->
+
+    <main class="dashboard-container">
+
+        <!-- HEADER -->
+
+        <header class="dashboard-header">
+
+            <div>
+
+                <div class="dashboard-logo">
+                    SA
+                </div>
+
+                <div class="dashboard-title">
+
+                    <h1>
+                        Available Exams
+                    </h1>
+
+                    <p>
+                        Project Java • Student Examination Portal
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="logout-btn"
+                onclick="window.location.href='student-dashboard.html'"
+            >
+                ← Dashboard
+            </button>
+
+        </header>
+
+
+        <!-- STUDENT INFORMATION -->
+
+        <section class="welcome-card">
+
+            <div>
+
+                <p class="small-title">
+                    EXAMINATION PORTAL
+                </p>
+
+                <h2 id="studentInfo">
+                    Loading...
+                </h2>
+
+                <p>
+                    Select a subject to view and start its examination.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- SUBJECTS -->
+
+        <section class="subjects-section">
+
+            <div class="section-heading">
+
+                <h2>
+                    Available Subjects
+                </h2>
+
+                <p>
+                    Exams available for your branch and year
+                </p>
+
+            </div>
+
+
+            <div
+                id="subjectGrid"
+                class="subject-grid"
+            >
+
+                <p id="loadingMessage">
+                    Loading available exams...
+                </p>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="js/student-exams.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Examination Results - Project Java</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <div class="background">
+        <div class="wave wave1"></div>
+        <div class="wave wave2"></div>
+        <div class="circle circle1"></div>
+        <div class="circle circle2"></div>
+    </div>
+
+    <div class="dashboard-container">
+
+        
+
+            </nav>
+
+            <button class="logout-btn" onclick="logout()">
+                Logout
+            </button>
+
+        </aside>
+
+
+        <!-- MAIN CONTENT -->
+        <main class="dashboard-main">
+
+            <div class="dashboard-header">
+
+                <div>
+                    <h1>Examination Results</h1>
+                    <p>View your submitted examination results.</p>
+                </div>
+
+            </div>
+
+
+            <!-- RESULTS -->
+            <section class="dashboard-section">
+
+                <div id="resultsContainer" class="dashboard-grid">
+
+                    <p>Loading results...</p>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <script>
+
+        async function loadStudentResults() {
+
+            const container =
+                document.getElementById("resultsContainer");
+
+            try {
+
+                const response =
+                    await fetch("/api/student-results");
+
+                const data =
+                    await response.json();
+
+                console.log("STUDENT RESULTS:", data);
+
+
+                if (!response.ok || !data.success) {
+
+                    container.innerHTML =
+                        `<p>${data.message || "Unable to load results."}</p>`;
+
+                    return;
+                }
+
+
+                if (!data.results || data.results.length === 0) {
+
+                    container.innerHTML =
+                        `<p>No examination results available yet.</p>`;
+
+                    return;
+                }
+
+
+                container.innerHTML = "";
+
+
+                data.results.forEach(result => {
+
+                    const percentage =
+                        result.total_marks > 0
+                            ? ((result.score / result.total_marks) * 100).toFixed(2)
+                            : "0.00";
+
+
+                    const resultCard =
+                        document.createElement("div");
+
+                    resultCard.className = "result-card";
+
+
+                    resultCard.innerHTML = `
+
+                        <h3>
+                            ${result.subject || result.title}
+                        </h3>
+
+                        <p>
+                            <strong>Exam:</strong>
+                            ${result.title}
+                        </p>
+
+                        <p>
+                            <strong>Score:</strong>
+                            ${result.score} / ${result.total_marks}
+                        </p>
+
+                        <p>
+                            <strong>Percentage:</strong>
+                            ${percentage}%
+                        </p>
+
+                        <p>
+                            <strong>Submitted:</strong>
+                            ${new Date(result.submitted_at).toLocaleString()}
+                        </p>
+
+                    `;
+
+
+                    container.appendChild(resultCard);
+
+                });
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Error loading results:",
+                    error
+                );
+
+                container.innerHTML =
+                    `<p>Unable to connect to the server.</p>`;
+
+            }
+
+        }
+
+
+        async function logout() {
+
+            try {
+
+                await fetch("/api/logout", {
+                    method: "POST"
+                });
+
+            }
+
+            catch (error) {
+
+                console.error(error);
+
+            }
+
+            window.location.href = "index.html";
+
+        }
+
+
+        loadStudentResults();
+
+    </script>
+
+</body>
+</html>

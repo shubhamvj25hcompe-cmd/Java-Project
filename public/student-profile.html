@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Personal Information | Project Java</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+</head>
+
+<body>
+
+    <!-- BACKGROUND -->
+
+    <div class="background">
+
+        <div class="wave wave1"></div>
+        <div class="wave wave2"></div>
+        <div class="wave wave3"></div>
+
+        <div class="circle circle1"></div>
+        <div class="circle circle2"></div>
+        <div class="circle circle3"></div>
+
+    </div>
+
+
+    <!-- PROFILE PAGE -->
+
+    <main class="dashboard-container">
+
+        <!-- HEADER -->
+
+        <header class="dashboard-header">
+
+            <div>
+
+                <div class="dashboard-logo">
+                    SA
+                </div>
+
+                <div class="dashboard-title">
+
+                    <h1>
+                        Personal Information
+                    </h1>
+
+                    <p>
+                        Project Java • Student Profile
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="logout-btn"
+                onclick="window.location.href='student-dashboard.html'"
+            >
+                ← Dashboard
+            </button>
+
+        </header>
+
+
+        <!-- PROFILE CARD -->
+
+        <section class="profile-card">
+
+            <div class="profile-avatar">
+                👤
+            </div>
+
+            <div class="profile-heading">
+
+                <h2 id="profileName">
+                    Loading...
+                </h2>
+
+                <p id="profileEmail">
+                    Loading...
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- INFORMATION -->
+
+        <section class="profile-information">
+
+            <div class="section-heading">
+
+                <h2>
+                    Student Details
+                </h2>
+
+                <p>
+                    Your registered information
+                </p>
+
+            </div>
+
+
+            <div class="profile-grid">
+
+
+                <!-- FULL NAME -->
+
+                <div class="profile-item">
+
+                    <span>
+                        Full Name
+                    </span>
+
+                    <strong id="fullName">
+                        Loading...
+                    </strong>
+
+                </div>
+
+
+                <!-- EMAIL -->
+
+                <div class="profile-item">
+
+                    <span>
+                        Email Address
+                    </span>
+
+                    <strong id="email">
+                        Loading...
+                    </strong>
+
+                </div>
+
+
+                <!-- PHONE -->
+
+                <div class="profile-item">
+
+                    <span>
+                        Phone Number
+                    </span>
+
+                    <strong id="phone">
+                        Loading...
+                    </strong>
+
+                </div>
+
+
+                <!-- DATE OF BIRTH -->
+
+                <div class="profile-item">
+
+                    <span>
+                        Date of Birth
+                    </span>
+
+                    <strong id="dob">
+                        Loading...
+                    </strong>
+
+                </div>
+
+
+                <!-- ROLL NUMBER -->
+
+                <div class="profile-item">
+
+                    <span>
+                        Roll Number
+                    </span>
+
+                    <strong id="rollNumber">
+                        Loading...
+                    </strong>
+
+                </div>
+
+
+                <!-- DIVISION -->
+
+                <div class="profile-item">
+
+                    <span>
+                        Division
+                    </span>
+
+                    <strong id="division">
+                        Loading...
+                    </strong>
+
+                </div>
+
+
+                <!-- BRANCH -->
+
+                <div class="profile-item">
+
+                    <span>
+                        Branch
+                    </span>
+
+                    <strong>
+                        Computer Engineering
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- ACCOUNT STATUS -->
+
+        <section class="profile-information">
+
+            <div class="section-heading">
+
+                <h2>
+                    Account Status
+                </h2>
+
+                <p>
+                    Security and verification status
+                </p>
+
+            </div>
+
+<div class="profile-grid">
+
+    <div class="profile-item">
+
+        <span>
+            Email Verification
+        </span>
+
+        <div>
+            <strong id="emailStatus">
+                Not Verified
+            </strong>
+
+            <button
+                type="button"
+                id="sendOtpBtn"
+                class="dashboard-action"
+                onclick="sendEmailOTP()">
+                Verify Email
+            </button>
+        </div>
+
+    </div>
+
+
+                <div class="profile-item">
+
+                    <span>
+                        Phone Verification
+                    </span>
+
+                    <strong id="phoneStatus">
+                        Not Verified
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+    <!-- ==========================================
+     OTP VERIFICATION POPUP
+========================================== -->
+
+<div id="otpModal" class="otp-modal">
+
+    <div class="otp-box">
+
+        <button
+            type="button"
+            class="otp-close"
+            onclick="closeOTPModal()">
+            ×
+        </button>
+
+        <h2>Verify Your Email</h2>
+
+        <p>
+            We've sent a 6-digit OTP to your
+            registered email address.
+        </p>
+
+        <input
+            type="text"
+            id="otpInput"
+            maxlength="6"
+            placeholder="Enter 6-digit OTP"
+            autocomplete="one-time-code">
+
+        <button
+            type="button"
+            id="verifyOtpBtn"
+            onclick="verifyEmailOTP()">
+            Verify OTP
+        </button>
+
+        <p id="otpMessage"></p>
+
+    </div>
+
+</div>
+
+    <script src="js/student-profile.js"></script>
+
+</body>
+
+</html>

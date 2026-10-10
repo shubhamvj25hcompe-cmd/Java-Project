@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Student Dashboard | Project Java</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+</head>
+
+<body>
+
+    <!-- BACKGROUND -->
+
+    <div class="background">
+
+        <div class="wave wave1"></div>
+        <div class="wave wave2"></div>
+        <div class="wave wave3"></div>
+
+        <div class="circle circle1"></div>
+        <div class="circle circle2"></div>
+        <div class="circle circle3"></div>
+
+    </div>
+
+
+    <!-- DASHBOARD -->
+
+    <main class="dashboard-container">
+
+
+        <!-- TOP BAR -->
+
+        <header class="dashboard-header">
+
+            <div>
+
+                <div class="dashboard-logo">
+                    SA
+                </div>
+
+                <div class="dashboard-title">
+
+                    <h1>
+                        Student Dashboard
+                    </h1>
+
+                    <p>
+                        Project Java • Smart Attendance
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="logout-btn"
+                id="logoutBtn"
+            >
+                Logout
+            </button>
+
+        </header>
+
+
+        <!-- WELCOME -->
+
+        <section class="welcome-card">
+
+            <div>
+
+                <p class="small-title">
+                    STUDENT PORTAL
+                </p>
+
+                <h2 id="welcomeMessage">
+                    Welcome!
+                </h2>
+
+                <p>
+                    Manage your exams, attendance and results
+                    from one place.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- MAIN CARDS -->
+
+        <section class="dashboard-grid">
+
+
+            <!-- PERSONAL INFORMATION -->
+
+            <div class="dashboard-card">
+
+                <div class="card-icon">
+                    👤
+                </div>
+
+                <h3>
+                    Personal Information
+                </h3>
+
+                <p>
+                    View and manage your student profile
+                    information.
+                </p>
+
+                <button
+                    type="button"
+                    class="dashboard-action"
+                    onclick="window.location.href='student-profile.html'"
+                >
+                    View Profile
+                </button>
+
+            </div>
+
+
+            <!-- EXAMS -->
+
+            <div class="dashboard-card">
+
+                <div class="card-icon">
+                    📝
+                </div>
+
+                <h3>
+                    Exams
+                </h3>
+
+                <p>
+                    View available examinations and
+                    participate in your exams.
+                </p>
+
+                <button
+                    type="button"
+                    class="dashboard-action"
+                    onclick="window.location.href='student-exams.html'"
+                >
+                    View Exams
+                </button>
+
+            </div>
+
+
+            <!-- ATTENDANCE -->
+
+            <div class="dashboard-card">
+    <div class="card-icon">📊</div>
+    <h3>Attendance</h3>
+    <p>Check your examination attendance and session records.</p>
+    <button type="button" class="dashboard-action"
+        onclick="window.location.href='student-attendance.html'">
+        View Attendance
+    </button>
+</div>
+
+            <!-- RESULTS -->
+
+            <div class="dashboard-card">
+
+                <div class="card-icon">
+                    🏆
+                </div>
+
+                <h3>
+                    Results
+                </h3>
+
+                <p>
+                    View your examination results and
+                    performance.
+                </p>
+
+                <button
+                    type="button"
+                    class="dashboard-action"
+                    onclick="window.location.href='student-results.html'"
+                >
+                    View Results
+                </button>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- SUBJECTS -->
+
+        <section class="subjects-section">
+
+            <div class="section-heading">
+
+                <h2>
+                    Your Subjects
+                </h2>
+
+                <p>
+                    Available subjects for examination
+                </p>
+
+            </div>
+
+
+            <div
+                class="subject-grid"
+                id="dashboardSubjectGrid"
+            >
+
+                <p>
+                    Loading subjects...
+                </p>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="js/student-dashboard.js"></script>
+
+</body>
+
+</html>
